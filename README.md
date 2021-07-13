@@ -18,11 +18,16 @@ Build a dashboard for a Tucson AZ camping club that gathers the National Weather
 ### Technologies
 * Underlying Components
     * Python Flask (similar to Mars webscraping challenge)
-    * postgreSQL database (similar to Mars webscraping challenge)
+    * postgreSQL database (similar to Mars webscraping challenge, replace json data every update)
+    
+| Index | Campground Name | url_point_metadata | url_forecast_griddata | Point Metadata JSON | Forecast Grid Data JSON |
+|----------------|---------------:|
+| 0 | Whitetail | url_point_metadata | url_forecast_griddata | d3.json(url_point_metadata, function(data) {return metadata}); | d3.json(url_forecast_griddata, function(data) {return griddata}); |
+
 * Visible Dashboard
     * Button to update database (similar to Mars webscraping)
     * Plotly box plot of all forecasted temperatures for each campground (<a href="https://plotly.com/javascript/box-plots/" target="_blank">https://plotly.com/javascript/box-plots/</a>)
-    * single item slick carousel of Campground detailed forecasts as stacked line charts of Temp, Winds, & Precip similar to NWS hourly graph (<a href="https://kenwheeler.github.io/slick/" target="_blank">https://kenwheeler.github.io/slick/</a>)
-    * 
+    * single item slick carousel of Campground detailed forecasts as Plotly stacked line charts of Temp, Winds, & Precip similar to NWS hourly graph (<a href="https://kenwheeler.github.io/slick/" target="_blank">https://kenwheeler.github.io/slick/</a>)
+    
 ### Sample Layout
 ![sample](sample_layout.png)
