@@ -20,7 +20,7 @@ Build a dashboard for a Tucson AZ camping club that gathers the National Weather
     * Python Flask (similar to Mars webscraping challenge)
     * postgreSQL database (similar to Mars webscraping challenge, replace json data every update)
     
-| Index | Campground Name | url_point_metadata | url_forecast_griddata | Point Metadata JSON | Forecast Grid Data JSON |
+| Index | Campground Name | Metadata URL | Grid Data URL | Point Metadata JSON | Forecast Grid Data JSON |
 |----------------|---------------|----------------|---------------|----------------|---------------|
 | 0 | Whitetail | url_point_metadata | url_forecast_griddata | d3.json(url_point_metadata, function(data) {return metadata}); | d3.json(url_forecast_griddata, function(data) {return griddata}); |
 
