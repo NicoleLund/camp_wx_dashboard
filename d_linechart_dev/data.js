@@ -1,1 +1,0 @@
-var whitetail_url = "https://api.weather.gov/gridpoints/TWC/100,55"
