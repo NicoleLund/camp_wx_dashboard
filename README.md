@@ -30,4 +30,4 @@ Build a dashboard for a Tucson AZ camping club that gathers the National Weather
     * single item slick carousel of Campground detailed forecasts as Plotly stacked line charts of Temp, Winds, & Precip similar to NWS hourly graph (<a href="https://kenwheeler.github.io/slick/" target="_blank">https://kenwheeler.github.io/slick/</a>)
     
 ### Sample Layout
-![sample](sample_layout.png)
+![sample](b_sample_layout/sample_layout.png)
