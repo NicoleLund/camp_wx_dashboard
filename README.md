@@ -10,10 +10,19 @@ Build a dashboard for a Tucson AZ camping club that gathers the National Weather
 * Whitetail Campground (11200 N., Whitetail Rd, Mt Lemmon, AZ 85619): 
     * **Point metadata:** <a href="https://api.weather.gov/points/32.4128,-110.7313" target="_blank">https://api.weather.gov/points/32.4128,-110.7313</a>
     * **Forecast grid data (detailed data organized by arrays of measurements rather than time objects):** <a href="https://api.weather.gov/gridpoints/TWC/100,55" target="_blank">https://api.weather.gov/gridpoints/TWC/100,55</a>
-* Show Low Lake Campground (5800 Show Low Lake Rd, Lakeside, AZ 85929)
-* Crescent Moon Ranch (300 Red Rock Crossing Rd, Sedona, AZ 86336)
-* Indian Garden Campground (Bright Angel Trail, Grand Canyon Village, AZ 86023)
-* Madera Canyon (S Madera Canyon Rd, Amado, AZ 85645)
+* Madera Canyon (S Madera Canyon Rd, Amado, AZ 85645): 
+    * **Point metadata:** <a href="https://api.weather.gov/points/31.7408,-110.8858" target="_blank">https://api.weather.gov/points/31.7408,-110.8858</a>
+    * **Forecast grid data (detailed data organized by arrays of measurements rather than time objects):** <a href="https://api.weather.gov/gridpoints/TWC/91,27" target="_blank">https://api.weather.gov/gridpoints/TWC/91,27</a>
+* Show Low Lake Campground (5800 Show Low Lake Rd, Lakeside, AZ 85929): 
+    * **Point metadata:** <a href="https://api.weather.gov/points/34.1953,-110.0067" target="_blank">https://api.weather.gov/points/34.1953,-110.0067</a>
+    * **Forecast grid data (detailed data organized by arrays of measurements rather than time objects):** <a href="https://api.weather.gov/gridpoints/FGZ/127,37" target="_blank">https://api.weather.gov/gridpoints/FGZ/127,37</a>
+* Crescent Moon Ranch (300 Red Rock Crossing Rd, Sedona, AZ 86336): 
+    * **Point metadata:** <a href="https://api.weather.gov/points/34.8278,-111.8096" target="_blank">https://api.weather.gov/points/34.8278,-111.8096</a>
+    * **Forecast grid data (detailed data organized by arrays of measurements rather than time objects):** <a href="https://api.weather.gov/gridpoints/FGZ/65,72" target="_blank">https://api.weather.gov/gridpoints/FGZ/65,72</a>
+* Indian Garden Campground (Bright Angel Trail, Grand Canyon Village, AZ 86023): 
+    * **Point metadata:** <a href="https://api.weather.gov/points/36.0798,-112.1255" target="_blank">https://api.weather.gov/points/36.0798,-112.1255</a>
+    * **Forecast grid data (detailed data organized by arrays of measurements rather than time objects):** <a href="https://api.weather.gov/gridpoints/FGZ/61,129" target="_blank">https://api.weather.gov/gridpoints/FGZ/61,129</a>
+
 
 ### Technologies
 * Underlying Components
