@@ -6,7 +6,7 @@
 # 
 # By Nicole Lund 
 # 
-# This Python script stores scraped web data in a Pymongo DB 
+# This Python script stores scraped web data in a postgreSQL DB 
 # and displays on a webpage.
 ####################################################
 
@@ -21,23 +21,26 @@ app = Flask(__name__)
 # app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_factoids"
 # mongo = PyMongo(app)
 
-# @app.route("/")
-# def index():
-#     mars_data = mongo.db.mars_data.find_one()
-#     return render_template("index.html")
+@app.route("/")
+def index():
+    # mars_data = mongo.db.mars_data.find_one()
+    refreshed_data = refresh_data.refresh()
+    print("Index: ")
+    print(refreshed_data)
 
-# @app.route("/scrape")
-# def scraper():
+    # # Delete existing collection
+    # mongo.db.mars_data.drop()
 
-#     # Delete existing collection
-#     mongo.db.mars_data.drop()
+    # # Insert scraped mars data document
+    # mongo.db.mars_data.insert_one(refresh_data.refresh())
 
-#     # Insert scraped mars data document
-#     mongo.db.mars_data.insert_one(refresh_data.scrape())
+    return render_template("index.html", refreshed_data=refreshed_data)
 
-#     # Return to root
-#     return redirect("/", code=302)
+@app.route("/refresh")
+def refresher():
+    # Return to root
+    return redirect("/", code=302)
 
 
-# if __name__ == "__main__":
-#     app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)

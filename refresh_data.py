@@ -1,13 +1,13 @@
 ####################################################
-# # mission_to_mars
+# # refresh_data
 # ----
 # 
 # Written in the Python 3.7.9 Environment
 # 
 # By Nicole Lund 
 # 
-# This Python script scrapes Mars space data from various 
-# locations for storage in a Pymongo DB and display on a webpage.
+# This Python script scrapes useful camping information from various 
+# locations for storage in a postgreSQL DB and display on a webpage.
 ####################################################
 
 # Import Dependencies
@@ -17,177 +17,92 @@ from splinter import Browser
 from bs4 import BeautifulSoup
 from webdriver_manager.chrome import ChromeDriverManager
 
-# def nasa_news(browser):
-#     ####################################################
-#     # NASA Mars News
-#     ####################################################
-  
-#     # Access NASA news site
-#     nasa_url = 'https://mars.nasa.gov/news/'
-#     browser.visit(nasa_url)
-#     nasa_html = browser.html
-#     nasa_soup = BeautifulSoup(nasa_html, 'html.parser')
-    
-#     # Allow webpage to load fully
-#     time.sleep(1.5)
+def nws_forecast():
+   ####################################################
+   # Collect All National Weather Service Forecasts
+   ####################################################
+   nws_forecast_dict = {}    
 
-#     # Collect the latest news headline and paragraph
-#     latest_container = nasa_soup.find('div', class_='image_and_description_container')
-    
-#     # Final Nasa Result
-#     news_headline = latest_container.find('div', class_='content_title').find('a').text
-#     news_teaser = latest_container.find('div', class_='article_teaser_body').text
-#     nasa_news_headline = {'headline':news_headline,'teaser':news_teaser}
+   return nws_forecast_dict
 
-#     # print('')
-#     # print('-------- NASA News Top Headline --------')
-#     # print(nasa_news_headline)
+def fire_danger(browser):
+   ####################################################
+   # Collect All Fire Danger Levels
+   ####################################################
 
-#     return nasa_news_headline
+   # Access Bog Springs site
+   bog_springs_url = 'https://www.fs.usda.gov/recarea/coronado/recreation/camping-cabins/recarea/?recid=25732&actid=29'
+   bog_springs_fire_level = get_fire_level(browser, bog_springs_url)
+   bog_springs_fire = {
+      "location": "Bog Springs",
+      "fire_level": bog_springs_fire_level
+   }
 
-# def jpl_feature(browser):
-#     ####################################################
-#     # JPL Mars Space Images - Featured Image
-#     ####################################################
+   # Access Rose Canyon site
+   rose_canyon_url = 'https://www.fs.usda.gov/recarea/coronado/recreation/camping-cabins/recarea/?recid=25698&actid=29'
+   rose_canyon_fire_level = get_fire_level(browser, rose_canyon_url)
+   rose_canyon_fire = {
+      "location": "Rose Canyon",
+      "fire_level": rose_canyon_fire_level
+   }
+   # Access Spencer Canyon site
+   spencer_canyon_url = 'https://www.fs.usda.gov/recarea/coronado/recreation/camping-cabins/recarea/?recid=25710&actid=29'
+   spencer_canyon_fire_level = get_fire_level(browser, spencer_canyon_url)
+   spencer_canyon_fire = {
+      "location": "Spencer Canyon",
+      "fire_level": spencer_canyon_fire_level
+   }
 
-#     # Access JPL image site
-#     jpl_base_url = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/'
-#     jpl_url = jpl_base_url + 'index.html'
-#     browser.visit(jpl_url)
-#     jpl_html = browser.html
-#     jpl_soup = BeautifulSoup(jpl_html, 'html.parser')
-#     # Allow webpage to load fully - Has not been necessary
-#     # time.sleep(1)
+   fire_danger_dict = {
+      "bog_springs_fire": bog_springs_fire,
+      "rose_canyon_fire": rose_canyon_fire,
+      "spencer_canyon_fire": spencer_canyon_fire
+   }
+   # print(fire_danger_dict)
 
-#     # Collect the full url path for the full size featured image
-#     featured = jpl_soup.find('div', class_='floating_text_area')
-#     jpl_relative_url = featured.find('a')['href']
+   return fire_danger_dict
 
-#     # Final JPL Result
-#     featured_image_url = jpl_base_url + jpl_relative_url
-    
-#     # print('')
-#     # print('-------- JPL Featured Image --------')
-#     # print(featured_image_url)
+def get_fire_level(browser,url):
+   ####################################################
+   # Collect Fire Danger Level for one site
+   ####################################################
+   browser.visit(url)
+   html = browser.html
+   soup = BeautifulSoup(html, 'html.parser')
 
-#     return featured_image_url
+   # Collect the current fire danger
+   fire_danger = soup.find('div', class_='dangerlevel').text
+   
+   return fire_danger
 
-# def mars_facts(browser):
-#     ####################################################
-#     # Mars Facts
-#     ####################################################
+def refresh():
+   ####################################################
+   # Refresh Weather Data
+   ####################################################
 
-#     # Collect Mars Facts Table
-#     facts_url = 'https://space-facts.com/mars/'
-#     facts_df = pd.read_html(facts_url)[0]
+   # Initialize browser
+   executable_path = {'executable_path': ChromeDriverManager().install()}
+   browser = Browser('chrome', **executable_path, headless=False)
 
-#     # print('')
-#     # print('-------- Mars Facts Table --------')
-#     # print(facts_df)
-#     # print('')
+   # Retrieve NWS JSON data
+   nws_forecast_dict = nws_forecast()
+   # print(nws_forecast_dict)
+   
+   # Retrieve Campground Fire Danger
+   fire_danger_dict = fire_danger(browser)
+   # print(fire_danger_dict)
+   
+   # Store all retrieved data within a single dictionary
+   refreshed_data = nws_forecast_dict
+   refreshed_data.update(fire_danger_dict)
 
-#     # Final Mars Facts Result - Convert facts table to html string
-#     # Note from Nicole Lund - I chose to remove all formatting from
-#     # the table as an esthetic choice because the Description column
-#     # fields include a : at the end.
-#     facts_html = facts_df.to_html(justify='left',border=0,header=False,index=False)
+   # print(refreshed_data)
 
-#     return facts_html
+   # Close splinter browser
+   browser.quit()
 
-# def mars_hemispheres(browser):
-#     ####################################################
-#     # Mars Hemispheres
-#     ####################################################
-
-#     # Access Astrogeology site
-#     astropedia_base_url = 'https://astrogeology.usgs.gov'
-#     astropedia_relative_url = '/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
-#     astropedia_url = astropedia_base_url + astropedia_relative_url
-#     browser.visit(astropedia_url)
-#     astropedia_html = browser.html
-#     astropedia_soup = BeautifulSoup(astropedia_html, 'html.parser')
-    
-#     # Allow webpage to load fully - Has not been necessary
-#     # time.sleep(1)
-
-#     # Collect hemisphere titles
-#     hemisphere_titles = []
-#     hemisphere_containers = astropedia_soup.find_all('div', class_='description')
-
-#     for image_num in range(0,5):
-#         try:
-#             hemisphere_found = hemisphere_containers[image_num].h3.text
-#             hemisphere_titles.append(hemisphere_found)
-#             print(f'Found Hemisphere: {hemisphere_found}')
-#         except IndexError:
-#             print('All Hemispheres Found')
-
-#     # Navigate to each hemisphere link and collect image link and title in a dictionary
-#     hemisphere_image_urls = []
-
-#     for hemisphere in hemisphere_titles:
-#         # Navigate to each hemisphere link
-#         browser.links.find_by_partial_text(hemisphere).click()
-
-#         # Collect URL for full size image
-#         hemisphere_html = browser.html
-#         hemisphere_soup = BeautifulSoup(hemisphere_html, 'html.parser')
-#         # Allow webpage to load fully - Has not been necessary
-#         # time.sleep(1)
-
-#         hemisphere_image = hemisphere_soup.find('img', class_='wide-image')['src']
-#         image_link = astropedia_base_url + hemisphere_image
-#         hemisphere_image_urls.append(\
-#             {"title":hemisphere,"img_url":image_link})
-
-#         # Return to main page
-#         browser.visit(astropedia_url)
-
-#     # print('')
-#     # print('-------- Mars Hemisphere Images --------')
-#     # print(hemisphere_image_urls)
-#     # print('')
-
-#     return hemisphere_image_urls
-
-# def scrape():
-#     ####################################################
-#     # Scrape Mars Related Data
-#     ####################################################
-
-#     # Initialize browser
-#     executable_path = {'executable_path': ChromeDriverManager().install()}
-#     browser = Browser('chrome', **executable_path, headless=False)
-
-#     # Retrieve NASA news
-#     nasa_headline_teaser = nasa_news(browser)
-    
-#     # Retrieve JPL Featured Image
-#     jpl_image = jpl_feature(browser)
-
-#     # Retrieve Mars Facts Table
-#     facts_table = mars_facts(browser)
-
-#     # Retrieve Mars Hemisphere Images
-#     hemisphere_image_links = mars_hemispheres(browser)
-    
-#     # Store all retrieved data within a single dictionary
-#     mars_data = {\
-#         'nasa_top_story':nasa_headline_teaser,\
-#         'jpl_featured_img':jpl_image,\
-#         'facts_table_html':facts_table,\
-#         'hemisphere_images':hemisphere_image_links\
-#         }
-
-#     # print('')
-#     # print('-------- Combined Mars Data --------')
-#     # print(mars_data)
-
-#     # Close splinter browser
-#     browser.quit()
-
-#     return(mars_data)
+   return(refreshed_data)
 
 
 if __name__ == "__main__":
-   scrape() 
+   refresh() 
