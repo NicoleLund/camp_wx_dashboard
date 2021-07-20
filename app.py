@@ -11,21 +11,39 @@
 ####################################################
 
 # Import Dependencies
-from flask import Flask, render_template, redirect
+from models import create_classes
 import os
+from flask import (
+    Flask,
+    render_template,
+    jsonify,
+    request,
+    redirect)
 import refresh_data
 
-# Setup Flask
+#################################################
+# Flask Setup
+#################################################
 app = Flask(__name__)
 
-# Setup Database
+#################################################
+# Database Setup
+#################################################
+
 from flask_sqlalchemy import SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
+
 # Remove tracking modifications
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db = SQLAlchemy(app)
 
+camp_data = create_classes(db)
+
+
+#################################################
 # Create index.html route
+#################################################
 @app.route("/")
 def index():
     refreshed_data = refresh_data.refresh()
