@@ -18,12 +18,12 @@ import refresh_data
 # Setup Flask
 app = Flask(__name__)
 
-# # Setup Database
-# from flask_sqlalchemy import SQLAlchemy
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
-# # Remove tracking modifications
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# db = SQLAlchemy(app)
+# Setup Database
+from flask_sqlalchemy import SQLAlchemy
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
+# Remove tracking modifications
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
 # Create index.html route
 @app.route("/")
