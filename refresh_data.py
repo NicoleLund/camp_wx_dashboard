@@ -15,7 +15,7 @@
 import time
 from splinter import Browser
 from bs4 import BeautifulSoup
-import requests
+# import requests
 # from webdriver_manager.chrome import ChromeDriverManager
 
 def nws_forecast():
