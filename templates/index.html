@@ -26,21 +26,62 @@
                     <h1>Campground WX</h1>
                     <p>Find a southwest Arizona drop-in campground with the best weather for the weekend.</p>
                     <hr>
-                    <a class="btn btn-secondary btn-md" href="/refresh" role="button">Get the latest weather</a>
+
+                    <div class = "btn-group">
+                        <a class="btn btn-secondary btn-md" href="/" role="button">Get the latest weather</a>
+                    </div>
+
+                    <div class = "btn-group">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary  btn-md dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Select Campground
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#">Bog Springs</a>
+                              <a class="dropdown-item" href="#">Rose Canyon</a>
+                              <a class="dropdown-item" href="#">Spencer Canyon</a>
+                            </div>
+                        </div>
+                    </div>
+
                     <br>
                     <br>
                 </div>
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-lg-12" style="background-color:white;">
+                <br>
+                <h3 class="center">Campground Temperature Summary</h3>
+                <img src="http://www.stat.yale.edu/Courses/1997-98/101/boxplot.gif">
+                <br>
+                <hr>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-lg-12" style="background-color:white;">
                 <br>
-                <h3>{{ refreshed_data.bog_springs_fire.location }}</h3>
-                <p>{{ refreshed_data.bog_springs_fire.fire_level }}</p>
+                <h3 class="center">{{ refreshed_data.bog_springs_fire.location }} Campground Details</h3>
+                <br>
             </div>
         </div>
-    
+
+        <div class="row">
+            <div class="col-lg-3" style="background-color:white;">
+                <br>
+                <h4>Fire Danger Level</h4>
+                <p>{{ refreshed_data.bog_springs_fire.fire_level }}</p>
+                <br>
+                <h4>Resources</h4>
+                <p>Link to the forest service webpage</p>
+            </div>
+            <div class="col-lg-9" style="background-color:white;">
+                <br>
+                <h4 class="center">Campground Details Carousel</h4>
+                <img src="https://pandas.pydata.org/pandas-docs/stable/_images/frame_plot_subplots.png">
+            </div>
+        </div>
     </div>
   </body>
