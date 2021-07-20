@@ -12,34 +12,31 @@
 
 # Import Dependencies
 from flask import Flask, render_template, redirect
-# from flask_pymongo import PyMongo
+import os
 import refresh_data
 
+# Setup Flask
 app = Flask(__name__)
 
-# # Use flask_pymongo to set up mongo connection
-# app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_factoids"
-# mongo = PyMongo(app)
+# # Setup Database
+# from flask_sqlalchemy import SQLAlchemy
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
+# # Remove tracking modifications
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# db = SQLAlchemy(app)
 
+# Create index.html route
 @app.route("/")
 def index():
-    # mars_data = mongo.db.mars_data.find_one()
     refreshed_data = refresh_data.refresh()
     print("Index: ")
     print(refreshed_data)
 
-    # # Delete existing collection
-    # mongo.db.mars_data.drop()
+    # Delete existing collection
 
-    # # Insert scraped mars data document
-    # mongo.db.mars_data.insert_one(refresh_data.refresh())
+    # Insert refreshed data into db
 
     return render_template("index.html", refreshed_data=refreshed_data)
-
-@app.route("/refresh")
-def refresher():
-    # Return to root
-    return redirect("/", code=302)
 
 
 if __name__ == "__main__":
