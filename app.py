@@ -31,7 +31,7 @@ app = Flask(__name__)
 #################################################
 
 from flask_sqlalchemy import SQLAlchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://hgquoluqhpempn:1250a45ed32360cfb6492b98943bc4cd80699a8f00a1144625b3cf52b2db11c9@ec2-44-194-112-166.compute-1.amazonaws.com:5432/d3lajcergj0dej'
 
 # Remove tracking modifications
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
