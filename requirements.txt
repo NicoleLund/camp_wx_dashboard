@@ -3,3 +3,6 @@ Jinja2==3.0.1
 SQLAlchemy==1.4.21
 gunicorn==20.1.0
 Flask-SQLAlchemy==2.5.1
+splinter==0.15.0
+bs4==0.0.1
+webdriver-manager==3.4.2
