@@ -11,7 +11,7 @@
 ####################################################
 
 # Import Dependencies
-import pandas as pd 
+# import pandas as pd 
 import time
 from splinter import Browser
 from bs4 import BeautifulSoup
