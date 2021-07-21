@@ -78,7 +78,7 @@
         <div class="row">
             <div class="col-lg-12" style="background-color:white;">
                 <br>
-                <h3 class="center">{{ refreshed_data.bog_springs_fire.location }} Campground</h3>
+                <h3 class="center">{{ selected_data.location }} Campground</h3>
                 <br>
             </div>
         </div>
@@ -87,10 +87,10 @@
             <div class="col-lg-3" >
                 <br>
                 <h4>Fire Danger Level</h4>
-                <p>{{ refreshed_data.bog_springs_fire.fire_level }}</p>
+                <p>{{ selected_data.fire_level }}</p>
                 <br>
                 <h4>Resources</h4>
-                <p>Link to the forest service webpage</p>
+                <a href={{selected_data.forest_service_url}} target="_blank">{{ selected_data.location }} Forest Service Page</a>
             </div>
             <div class="col-lg-9">
                 <br>

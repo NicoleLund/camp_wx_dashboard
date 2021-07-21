@@ -46,59 +46,77 @@ camp_data = create_classes(db)
 
 
 #################################################
-# Create index.html route
+# index.html route
 #################################################
 @app.route("/")
 def index():
     refreshed_data = refresh_data.refresh()
+    selected_data = refreshed_data['bog_springs_fire']
 
-    # Delete existing collection
+    # Delete existing db table rows
 
-    # Insert refreshed data into db
+    # Insert refreshed data into db table rows
 
-    return render_template("index.html", refreshed_data=refreshed_data)
+    return render_template("index.html", selected_data=selected_data)
 
+#################################################
+# update route
+#################################################
 @app.route("/update")
 def update_data():
     refreshed_data = refresh_data.refresh()
+    selected_data = refreshed_data['bog_springs_fire']
 
-    # Delete existing collection
+    # Delete existing db table rows
 
-    # Insert refreshed data into db
+    # Insert refreshed data into db table rows
 
-    return render_template("index.html", refreshed_data=refreshed_data)
+    return render_template("index.html", selected_data=selected_data)
 
+#################################################
+# bog springs route
+#################################################
 @app.route("/bog_springs")
 def show_bog_springs():
     refreshed_data = refresh_data.refresh()
+    selected_data = refreshed_data['bog_springs_fire']
 
-    # Delete existing collection
+    # Delete existing db table rows
 
-    # Insert refreshed data into db
+    # Insert refreshed data into db table rows
 
-    return render_template("index.html", refreshed_data=refreshed_data)
+    return render_template("index.html", selected_data=selected_data)
 
-
+#################################################
+# rose canyon route
+#################################################
 @app.route("/rose_canyon")
 def show_rose_canyon():
     refreshed_data = refresh_data.refresh()
+    selected_data = refreshed_data['rose_canyon_fire']
 
-    # Delete existing collection
+    # Delete existing db table rows
 
-    # Insert refreshed data into db
+    # Insert refreshed data into db table rows
 
-    return render_template("index.html", refreshed_data=refreshed_data)
+    return render_template("index.html", selected_data=selected_data)
 
-
-@app.route("/specer_canyon")
-def show_specer_canyon():
+#################################################
+# spencer canyon route
+#################################################
+@app.route("/spencer_canyon")
+def show_spencer_canyon():
     refreshed_data = refresh_data.refresh()
+    selected_data = refreshed_data['spencer_canyon_fire']
 
-    # Delete existing collection
+    # Delete existing db table rows
 
-    # Insert refreshed data into db
+    # Insert refreshed data into db table rows
 
-    return render_template("index.html", refreshed_data=refreshed_data)
+    return render_template("index.html", selected_data=selected_data)
     
+#################################################
+# Default run behavior
+#################################################
 if __name__ == "__main__":
     app.run(debug=True)
