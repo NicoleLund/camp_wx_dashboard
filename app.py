@@ -34,9 +34,12 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://hgquoluqhpempn:1250a45ed32360cfb6492b98943bc4cd80699a8f00a1144625b3cf52b2db11c9@ec2-44-194-112-166.compute-1.amazonaws.com:5432/d3lajcergj0dej?sslmode=require'
+uri = os.environ.get('DATABASE_URL', '')
+uri = uri.replace('postgres://','postgresql://')
+uri = uri + '?sslmode=require'
+print(uri)
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL?sslmode=require')
+app.config['SQLALCHEMY_DATABASE_URI'] = uri
 
 # Remove tracking modifications
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -52,8 +55,6 @@ camp_data = create_classes(db)
 @app.route("/")
 def index():
     refreshed_data = refresh_data.refresh()
-    print("Index: ")
-    print(refreshed_data)
 
     # Delete existing collection
 
