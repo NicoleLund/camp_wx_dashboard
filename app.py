@@ -58,6 +58,47 @@ def index():
 
     return render_template("index.html", refreshed_data=refreshed_data)
 
+@app.route("/update")
+def update_data():
+    refreshed_data = refresh_data.refresh()
 
+    # Delete existing collection
+
+    # Insert refreshed data into db
+
+    return render_template("index.html", refreshed_data=refreshed_data)
+
+@app.route("/bog_springs")
+def show_bog_springs():
+    refreshed_data = refresh_data.refresh()
+
+    # Delete existing collection
+
+    # Insert refreshed data into db
+
+    return render_template("index.html", refreshed_data=refreshed_data)
+
+
+@app.route("/rose_canyon")
+def show_rose_canyon():
+    refreshed_data = refresh_data.refresh()
+
+    # Delete existing collection
+
+    # Insert refreshed data into db
+
+    return render_template("index.html", refreshed_data=refreshed_data)
+
+
+@app.route("/specer_canyon")
+def show_specer_canyon():
+    refreshed_data = refresh_data.refresh()
+
+    # Delete existing collection
+
+    # Insert refreshed data into db
+
+    return render_template("index.html", refreshed_data=refreshed_data)
+    
 if __name__ == "__main__":
     app.run(debug=True)

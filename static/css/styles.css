@@ -12,3 +12,8 @@ html {
 .center {
     text-align: center;
 }
+
+.selection_container {
+    display: flex;
+    justify-content: center;
+}
