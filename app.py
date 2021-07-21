@@ -34,11 +34,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-uri = os.environ.get('DATABASE_URL', '')
-uri = uri.replace('postgres://','postgresql://')
-uri = uri + '?sslmode=require'
-print(uri)
-
+uri = os.environ.get('DATABASE_URL', '').replace('postgres://','postgresql://') + '?sslmode=require'
 app.config['SQLALCHEMY_DATABASE_URI'] = uri
 
 # Remove tracking modifications
