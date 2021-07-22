@@ -12,7 +12,6 @@
 
 # Import Dependencies
 import os
-import psycopg2
 from flask import (
     Flask,
     render_template,
@@ -20,6 +19,7 @@ from flask import (
     request,
     redirect)
 from flask_sqlalchemy import SQLAlchemy
+import psycopg2
 
 # Import local file dependencies
 from models import create_classes
@@ -35,6 +35,15 @@ app = Flask(__name__)
 #################################################
 
 uri = os.environ.get('DATABASE_URL', '').replace('postgres://','postgresql://') + '?sslmode=require'
+
+if len(uri) <= 16:
+    import sys
+    sys.path.append(r"C:\Users\nlund\Documents\GitHub\untracked_files")
+    from camp_wx_uri import uri
+    uri = uri.replace('postgres://','postgresql://') + '?sslmode=require'
+
+print(uri)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = uri
 
 # Remove tracking modifications
@@ -42,7 +51,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-camp_data = create_classes(db)
+camp_wx, cg_bog_spring, cg_rose_canyon, cg_spencer_canyon = create_classes(db)
 
 
 #################################################
@@ -50,71 +59,98 @@ camp_data = create_classes(db)
 #################################################
 @app.route("/")
 def index():
-    refreshed_data = refresh_data.refresh()
-    selected_data = refreshed_data['bog_springs_fire']
+    # refreshed_data = refresh_data.refresh()
+    # selected_data = refreshed_data['bog_springs_fire']
 
     # Delete existing db table rows
 
     # Insert refreshed data into db table rows
 
-    return render_template("index.html", selected_data=selected_data)
+    # return render_template("index.html", selected_data=selected_data)
+    return render_template("index.html")
 
 #################################################
-# update route
+# box_plot route
 #################################################
-@app.route("/update")
-def update_data():
-    refreshed_data = refresh_data.refresh()
-    selected_data = refreshed_data['bog_springs_fire']
+@app.route("/api/box_plot.json")
+def box_plot():
+    # Bog Springs Temperature Forecast
+    bg_temp_results = db.session.query(cg_bog_spring.forecasted_temperature_degF).all()
+    bg_temp = [bg_temp_results[0][0] for result in bg_temp_results]
 
-    # Delete existing db table rows
+    # Rose Canyon Temperature Forecast
+    rc_temp_results = db.session.query(cg_rose_canyon.forecasted_temperature_degF).all()
+    rc_temp = [rc_temp_results[0][0] for result in rc_temp_results]
 
-    # Insert refreshed data into db table rows
+    # Spencer Canyon Temperature Forecast
+    sc_temp_results = db.session.query(cg_spencer_canyon.forecasted_temperature_degF).all()
+    sc_temp = [sc_temp_results[0][0] for result in sc_temp_results]
 
-    return render_template("index.html", selected_data=selected_data)
+    temp_data = [{
+        "bog_springs_temp": bg_temp,
+        "rose_canyon_temp": rc_temp,
+        "spencer_canyon_temp": sc_temp
+    }]
 
-#################################################
-# bog springs route
-#################################################
-@app.route("/bog_springs")
-def show_bog_springs():
-    refreshed_data = refresh_data.refresh()
-    selected_data = refreshed_data['bog_springs_fire']
+    return jsonify(temp_data)
 
-    # Delete existing db table rows
+# #################################################
+# # update route
+# #################################################
+# @app.route("/update")
+# def update_data():
+#     # refreshed_data = refresh_data.refresh()
+#     # selected_data = refreshed_data['bog_springs_fire']
 
-    # Insert refreshed data into db table rows
+#     # Delete existing db table rows
 
-    return render_template("index.html", selected_data=selected_data)
+#     # Insert refreshed data into db table rows
 
-#################################################
-# rose canyon route
-#################################################
-@app.route("/rose_canyon")
-def show_rose_canyon():
-    refreshed_data = refresh_data.refresh()
-    selected_data = refreshed_data['rose_canyon_fire']
+#     return render_template("index.html", selected_data=selected_data)
 
-    # Delete existing db table rows
+# #################################################
+# # bog springs route
+# #################################################
+# @app.route("/bog_springs")
+# def show_bog_springs():
+#     refreshed_data = refresh_data.refresh()
+#     selected_data = refreshed_data['bog_springs_fire']
 
-    # Insert refreshed data into db table rows
+#     # Delete existing db table rows
 
-    return render_template("index.html", selected_data=selected_data)
+#     # Insert refreshed data into db table rows
 
-#################################################
-# spencer canyon route
-#################################################
-@app.route("/spencer_canyon")
-def show_spencer_canyon():
-    refreshed_data = refresh_data.refresh()
-    selected_data = refreshed_data['spencer_canyon_fire']
+#     return render_template("index.html", selected_data=selected_data)
 
-    # Delete existing db table rows
+# #################################################
+# # rose canyon route
+# #################################################
+# @app.route("/rose_canyon")
+# def show_rose_canyon():
+#     refreshed_data = refresh_data.refresh()
+#     selected_data = refreshed_data['rose_canyon_fire']
 
-    # Insert refreshed data into db table rows
+#     # Delete existing db table rows
 
-    return render_template("index.html", selected_data=selected_data)
+#     # Insert refreshed data into db table rows
+
+#     return render_template("index.html", selected_data=selected_data)
+
+# #################################################
+# # spencer canyon route
+# #################################################
+# @app.route("/spencer_canyon")
+# def show_spencer_canyon():
+#     refreshed_data = refresh_data.refresh()
+#     selected_data = refreshed_data['spencer_canyon_fire']
+
+#     # Delete existing db table rows
+
+#     # Insert refreshed data into db table rows
+
+#     return render_template("index.html", selected_data=selected_data)
     
+
 #################################################
 # Default run behavior
 #################################################
