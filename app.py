@@ -169,10 +169,7 @@ def show_bog_springs():
     data = [results[0][0] for datum in results]
     forecast_dict["forecastTime_quantityOfPrecipitation"] = data
 
-    detailed_data = {
-        "site_details": camp_wx_dict,
-        "forecast": forecast_dict
-    }
+    detailed_data = [camp_wx_dict, forecast_dict]
 
     return jsonify(detailed_data)
 
@@ -233,10 +230,7 @@ def show_rose_canyon():
     data = [results[0][0] for datum in results]
     forecast_dict["forecastTime_quantityOfPrecipitation"] = data
 
-    detailed_data = {
-        "site_details": camp_wx_dict,
-        "forecast": forecast_dict
-    }
+    detailed_data = [camp_wx_dict, forecast_dict]
 
     return jsonify(detailed_data)
 
@@ -297,10 +291,7 @@ def show_spencer_canyon():
     data = [results[0][0] for datum in results]
     forecast_dict["forecastTime_quantityOfPrecipitation"] = data
 
-    detailed_data = {
-        "site_details": camp_wx_dict,
-        "forecast": forecast_dict
-    }
+    detailed_data = [camp_wx_dict, forecast_dict]
 
     return jsonify(detailed_data)
     
