@@ -240,19 +240,69 @@ def show_rose_canyon():
 
     return jsonify(detailed_data)
 
-# #################################################
-# # spencer canyon route
-# #################################################
-# @app.route("/spencer_canyon")
-# def show_spencer_canyon():
-#     refreshed_data = refresh_data.refresh()
-#     selected_data = refreshed_data['spencer_canyon_fire']
+#################################################
+# spencer canyon route
+#################################################
+@app.route("/api/spencer_canyon.json")
+def show_spencer_canyon():
+    camp_wx_results = db.session.query(camp_wx.campground,camp_wx.forest_url,camp_wx.campsite_url,camp_wx.fire_danger,camp_wx.map_code).all()
 
-#     # Delete existing db table rows
+    camp_wx_dict = {
+        "campground": camp_wx_results[2][0],
+        "forest_url": camp_wx_results[2][1],
+        "campsite_url": camp_wx_results[2][2],
+        "fire_danger": camp_wx_results[2][3],
+        "map_code": camp_wx_results[2][4]
+    }
 
-#     # Insert refreshed data into db table rows
+    forecast_dict = {}
 
-#     return render_template("index.html", selected_data=selected_data)
+    results = db.session.query(cg_spencer_canyon.forecasted_temperature_degF).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecasted_temperature_degF"] = data
+
+    results = db.session.query(cg_spencer_canyon.forecastTime_temperature).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecastTime_temperature"] = data
+
+    results = db.session.query(cg_spencer_canyon.forecasted_windSpeed_miles_per_h).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecasted_windSpeed_miles_per_h"] = data
+
+    results = db.session.query(cg_spencer_canyon.forecastTime_windSpeed).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecastTime_windSpeed"] = data
+
+    results = db.session.query(cg_spencer_canyon.forecasted_windGust_miles_per_h).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecasted_windGust_miles_per_h"] = data
+
+    results = db.session.query(cg_spencer_canyon.forecastTime_windGust).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecastTime_windGust"] = data
+
+    results = db.session.query(cg_spencer_canyon.forecasted_probabilityOfPrecipitation).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecasted_probabilityOfPrecipitation"] = data
+
+    results = db.session.query(cg_spencer_canyon.forecastTime_probabilityOfPrecipitation).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecastTime_probabilityOfPrecipitation"] = data
+
+    results = db.session.query(cg_spencer_canyon.forecasted_quantityOfPrecipitation_mm).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecasted_quantityOfPrecipitation_mm"] = data
+
+    results = db.session.query(cg_spencer_canyon.forecastTime_quantityOfPrecipitation).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecastTime_quantityOfPrecipitation"] = data
+
+    detailed_data = {
+        "site_details": camp_wx_dict,
+        "forecast": forecast_dict
+    }
+
+    return jsonify(detailed_data)
     
 
 #################################################
