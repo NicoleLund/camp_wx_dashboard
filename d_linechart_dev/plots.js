@@ -3,62 +3,8 @@
 
 
 // json data:
-// d3.json("https://api.weather.gov/gridpoints/TWC/101,54").then(function(weather_data){
-//     console.log(weather_data)
+// d3.json("https://api.weather.gov/gridpoints/TWC/101,54").then(function(weather_data){console.log(weather_data)
 
-// // Wind chart. 
-// var windSpeed=[]
-// var windSpeed_times=[]
-
-
-// // stacked chart for wind speed
-// for (let index = 0; index < stacked_chart.windSpeed.values.length; index++) {
-//     const forecasted_windSpeed_km_per_h = result.properties.windSpeed.values[i].value;
-//     const forecastTime_windSpeed = result.properties.windSpeed.values[i].validTime
-
-//     windSpeed_times.push(forecasted_windSpeed_km_per_h)
-//     windSpeed.push(forecastTime_windSpeed)
-// }
-// console.log(temps)
-// var trace1 = {
-//     x: windSpeed_times,
-//     y: windSpeed,
-//     type: 'line'
-//   };
-
-// //stacked chart for wind gust
-// var windGust=[]
-// var windGust_times=[]
-
-// for (let index = 0; index < stacked_chart.windGust.values.length; index++) {
-//     const forecasted_windGust_km_per_h = result.properties.windGust.values[i].value;
-//     const forecastTime_windGust = result.properties.windGust.values[i].validTime;
-
-//     windGust_times.push(forecasted_windGust_km_per_h)
-//     windGust.push(forecastTime_windGust)
-// }
-
-// var trace2 = {
-//     x: windGust_times,
-//     y: windGust,
-//     xaxis: 'x2',
-//     yaxis: 'y2',
-//     type: 'line'
-//   };
-
-//   var data = [trace1, trace2];
-  
-//   var layout = {
-//   grid: {
-//       rows: 3,
-//       columns: 1,
-//       pattern: 'independent',
-//       roworder: 'bottom to top'}
-//   };
-  
-//   // Plot traces (wind speed and wind gust)
-//   Plotly.newPlot('plot', data, layout);
-// })
 
     // Probability of Precipitation. 
         // forecasted_probabilityOfPrecipitation = result.properties.probabilityOfPrecipitation.values[i].value
@@ -67,11 +13,6 @@
     // Quantity of Precipitation. 
         // forecasted_quantityOfPrecipitation_mm = result.properties.quantitativePrecipitation.values[i].value
         // forecastTime_quantityOfPrecipitation = result.properties.quantitativePrecipitation.values[i].validTime
-
-
-// Create a variable for lat and lon for drop down box
-// var lat=31.7276
-// var lon=-110.8754
 
 ////////////////////////////////////////////////////////
 //Build query URL
@@ -106,7 +47,7 @@ for (let index = 0; index < stacked_chart.windGust.values.length; index++) {
     windGust.push(gust_element)
 }
 // // Wind chart. 
-// stacked chard for wind speed
+// stacked chart for wind speed
 for (let index = 0; index < stacked_chart.windSpeed.values.length; index++) {
     const speed_GMT= stacked_chart.windSpeed.values[index].validTime;
     const speed_element= stacked_chart.windSpeed.values[index].value;
@@ -118,26 +59,26 @@ console.log(temps)
 var trace1 = {
     x: windSpeed_times,
     y: windSpeed,
-    type: 'line'
+    type: 'scatter'
   };
   
   var trace2 = {
     x: windGust_times,
     y: windGust,
-    xaxis: 'x2',
+    xaxis: '%d %B (%a)<br>%Y',
     yaxis: 'y2',
-    type: 'line'
+    type: 'scatter'
   };
   
-  var trace3 = {
-    x: temp_times,
-    y: temps,
-    xaxis: 'x3',
-    yaxis: 'y3',
-    type: 'line'
-  };
+//   var trace3 = {
+//     x: temp_times,
+//     y: temps,
+//     xaxis: '%d %B (%a)<br>%Y',
+//     yaxis: 'y3',
+//     type: 'line'
+//   };
   
-  var data = [trace1, trace2, trace3];
+  var data = [trace1, trace2];
   
   var layout = {
   grid: {
@@ -147,8 +88,15 @@ var trace1 = {
       roworder: 'bottom to top'}
   };
   
-  // Plot traces (temperatures, wind speed and wind gust)
+  // Plot traces (wind speed and wind gust)
   Plotly.newPlot('plot', data, layout);
+
+  //Formatting
+//   var layout = {
+//     yaxis: {windSpeed},
+//     yaxis2: {WindGust},
+//     yaxis3: {domain: [0.66, 1]}
+//   };
 })
 
 // Probability of Precipitation. 
