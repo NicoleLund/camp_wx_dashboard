@@ -17,7 +17,9 @@ from flask import (
     render_template,
     jsonify,
     request,
-    redirect)
+    redirect,
+    session,
+    url_for)
 from flask_sqlalchemy import SQLAlchemy
 import psycopg2
 
@@ -94,6 +96,7 @@ def box_plot():
 
     return jsonify(temp_data)
 
+
 # #################################################
 # # update route
 # #################################################
@@ -108,19 +111,70 @@ def box_plot():
 
 #     return render_template("index.html", selected_data=selected_data)
 
-# #################################################
-# # bog springs route
-# #################################################
-# @app.route("/bog_springs")
-# def show_bog_springs():
-#     refreshed_data = refresh_data.refresh()
-#     selected_data = refreshed_data['bog_springs_fire']
 
-#     # Delete existing db table rows
+#################################################
+# bog springs route
+#################################################
+@app.route("/api/bog_springs.json")
+def show_bog_springs():
+    camp_wx_results = db.session.query(camp_wx.campground,camp_wx.forest_url,camp_wx.campsite_url,camp_wx.fire_danger,camp_wx.map_code).all()
 
-#     # Insert refreshed data into db table rows
+    camp_wx_dict = {
+        "campground": camp_wx_results[0][0],
+        "forest_url": camp_wx_results[0][1],
+        "campsite_url": camp_wx_results[0][2],
+        "fire_danger": camp_wx_results[0][3],
+        "map_code": camp_wx_results[0][4]
+    }
 
-#     return render_template("index.html", selected_data=selected_data)
+    forecast_dict = {}
+
+    results = db.session.query(cg_bog_spring.forecasted_temperature_degF).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecasted_temperature_degF"] = data
+
+    results = db.session.query(cg_bog_spring.forecastTime_temperature).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecastTime_temperature"] = data
+
+    results = db.session.query(cg_bog_spring.forecasted_windSpeed_miles_per_h).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecasted_windSpeed_miles_per_h"] = data
+
+    results = db.session.query(cg_bog_spring.forecastTime_windSpeed).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecastTime_windSpeed"] = data
+
+    results = db.session.query(cg_bog_spring.forecasted_windGust_miles_per_h).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecasted_windGust_miles_per_h"] = data
+
+    results = db.session.query(cg_bog_spring.forecastTime_windGust).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecastTime_windGust"] = data
+
+    results = db.session.query(cg_bog_spring.forecasted_probabilityOfPrecipitation).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecasted_probabilityOfPrecipitation"] = data
+
+    results = db.session.query(cg_bog_spring.forecastTime_probabilityOfPrecipitation).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecastTime_probabilityOfPrecipitation"] = data
+
+    results = db.session.query(cg_bog_spring.forecasted_quantityOfPrecipitation_mm).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecasted_quantityOfPrecipitation_mm"] = data
+
+    results = db.session.query(cg_bog_spring.forecastTime_quantityOfPrecipitation).all()
+    data = [results[0][0] for datum in results]
+    forecast_dict["forecastTime_quantityOfPrecipitation"] = data
+
+    detailed_data = {
+        "site_details": camp_wx_dict,
+        "forecast": forecast_dict
+    }
+
+    return jsonify(detailed_data)
 
 # #################################################
 # # rose canyon route
