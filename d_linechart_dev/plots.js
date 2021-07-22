@@ -27,6 +27,10 @@ var windGust=[]
 var windGust_times=[]
 var windSpeed=[]
 var windSpeed_times=[]
+var precipitation=[]
+var precipitation_times=[]
+var quantityPrecipitation=[]
+var quantityPrecipitation_times=[]
 
 // stacked chart for temperatures
 for (let index = 0; index < stacked_chart.temperature.values.length; index++) {
@@ -100,3 +104,49 @@ var trace1 = {
 })
 
 // Probability of Precipitation. 
+// stacked chart for Precipitation
+for (let index = 0; index < stacked_chart.precipitation.values.length; index++) {
+    const precipitation_GMT= stacked_chart.precipitation.values[index].validTime;
+    const precipitation_element = stacked_chart.precipitation.values[index].value;
+   
+    precipitation_times.push(precipitation_GMT)
+    precipitation.push(precipitation_element)
+        
+}
+
+//stacked chart for quantity of precipitation
+for (let index = 0; index < stacked_chart.quantityPrecipitation.values.length; index++) {
+    const quantityPrecipitation_GMT= stacked_chart.quantityPrecipitation.values[index].validTime;
+    const quantityPrecipitation_element= stacked_chart.quantityPrecipitation.values[index].value;
+
+    quantityPrecipitation_times.push(quantityPrecipitation_GMT)
+    quantityPrecipitation.push(quantityPrecipitation_element)
+}
+console.log(temps)
+var trace3 = {
+    x: precipitation_times,
+    y: precipitation,
+    type: 'scatter'
+  };
+  
+  var trace4 = {
+    x: quantityPrecipitation_times,
+    y: quantityPrecipitation,
+    xaxis: '%d %B (%a)<br>%Y',
+    yaxis: 'y2',
+    type: 'scatter'
+    
+  };
+
+  var data = [trace3, trace4];
+  
+  var layout = {
+  grid: {
+      rows: 3,
+      columns: 1,
+      pattern: 'independent',
+      roworder: 'bottom to top'}
+  };
+  
+  // Plot traces (probability and quantity of precipitation)
+  Plotly.newPlot('plot', data, layout);
