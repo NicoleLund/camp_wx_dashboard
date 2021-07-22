@@ -37,7 +37,8 @@ def fire_danger(browser):
    # bog_springs_fire_level = get_fire_level(browser, bog_springs_url)
    bog_springs_fire = {
       "location": "Bog Springs",
-      "fire_level": bog_springs_fire_level
+      "fire_level": bog_springs_fire_level,
+      "forest_service_url": bog_springs_url
    }
 
    # Access Rose Canyon site
@@ -46,7 +47,8 @@ def fire_danger(browser):
    # rose_canyon_fire_level = get_fire_level(browser, rose_canyon_url)
    rose_canyon_fire = {
       "location": "Rose Canyon",
-      "fire_level": rose_canyon_fire_level
+      "fire_level": rose_canyon_fire_level,
+      "forest_service_url": rose_canyon_url
    }
    # Access Spencer Canyon site
    spencer_canyon_url = 'https://www.fs.usda.gov/recarea/coronado/recreation/camping-cabins/recarea/?recid=25710&actid=29'
@@ -54,7 +56,8 @@ def fire_danger(browser):
    # spencer_canyon_fire_level = get_fire_level(browser, spencer_canyon_url)
    spencer_canyon_fire = {
       "location": "Spencer Canyon",
-      "fire_level": spencer_canyon_fire_level
+      "fire_level": spencer_canyon_fire_level,
+      "forest_service_url": spencer_canyon_url
    }
 
    fire_danger_dict = {
