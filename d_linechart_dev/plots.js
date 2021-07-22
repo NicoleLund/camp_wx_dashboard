@@ -105,9 +105,9 @@ var trace1 = {
 
 // Probability of Precipitation. 
 // stacked chart for Precipitation
-for (let index = 0; index < stacked_chart.precipitation.values.length; index++) {
-    const precipitation_GMT= stacked_chart.precipitation.values[index].validTime;
-    const precipitation_element = stacked_chart.precipitation.values[index].value;
+for (let index = 0; index < stacked_chart.probabilityOfPrecipitation.values.length; index++) {
+    const precipitation_GMT= stacked_chart.probabilityOfPrecipitation.values[index].validTime;
+    const precipitation_element = stacked_chart.probabilityOfPrecipitation.values[index].value;
    
     precipitation_times.push(precipitation_GMT)
     precipitation.push(precipitation_element)
@@ -115,9 +115,9 @@ for (let index = 0; index < stacked_chart.precipitation.values.length; index++) 
 }
 
 //stacked chart for quantity of precipitation
-for (let index = 0; index < stacked_chart.quantityPrecipitation.values.length; index++) {
-    const quantityPrecipitation_GMT= stacked_chart.quantityPrecipitation.values[index].validTime;
-    const quantityPrecipitation_element= stacked_chart.quantityPrecipitation.values[index].value;
+for (let index = 0; index < stacked_chart.quantitativePrecipitation.values.length; index++) {
+    const quantityPrecipitation_GMT= stacked_chart.quantitativePrecipitation.values[index].validTime;
+    const quantityPrecipitation_element= stacked_chart.quantitativePrecipitation.values[index].value;
 
     quantityPrecipitation_times.push(quantityPrecipitation_GMT)
     quantityPrecipitation.push(quantityPrecipitation_element)
