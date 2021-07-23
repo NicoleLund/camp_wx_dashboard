@@ -74,14 +74,11 @@ def index():
 #################################################
 @app.route("/update")
 def update_data():
-    # Retrieve current displayed campground
-    location_display = 'Bog Springs'
-
     # Delete existing db table rows
 
     # Insert refreshed data into db table rows
 
-    return render_template("index.html", location_display = location_display)
+    return redirect(request.referrer, code=302)
 
 
 #################################################
