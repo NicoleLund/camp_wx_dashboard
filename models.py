@@ -1,3 +1,15 @@
+####################################################
+# # models.py
+# ----
+# 
+# Written in the Python 3.7.9 Environment
+# 
+# By Nicole Lund 
+# 
+# models.py defines the heroku postgreSQL db table
+# classes.
+####################################################
+
 def create_classes(db):
     class camp_wx(db.Model):
         __tablename__ = 'camp_wx'
