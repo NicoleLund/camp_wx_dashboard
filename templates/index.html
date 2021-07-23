@@ -18,6 +18,12 @@
 
     <title>Campground WX</title>
 
+    <!-- Slick CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
   </head>
 
   <body>
@@ -48,7 +54,6 @@
             </div>
         </div>
 
-        
         <div class="row">
             <div class="col-lg-2" style="background-color:white;"></div>
             <div class="col-lg-8" style="background-color:lightgray;">
@@ -94,7 +99,19 @@
                 <div class = "container-fluid center">
                     <div id="campground_details">
                         <h4>Campground Details Carousel</h4>
-                        <img src="https://pandas.pydata.org/pandas-docs/stable/_images/frame_plot_subplots.png">
+                        <!-- Slick Slider -->
+                        <ul class="slider">
+                            <li>
+                                <img src="https://pandas.pydata.org/pandas-docs/stable/_images/frame_plot_subplots.png">
+                            </li>
+                            <li>
+                                <img src="https://pandas.pydata.org/pandas-docs/stable/_images/series_plot_basic.png">
+                            </li>
+                            <li>
+                                <img src="https://pandas.pydata.org/pandas-docs/stable/_images/bar_plot_multi_ex.png">
+                            </li>
+
+                        </ul>
                     </div>
                 </div>
                 <br>
@@ -111,15 +128,25 @@
 
     </div>
 
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-    <script src="api/box_plot.json"></script>  
+<!-- slick.min.js -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+</script>
+
+<script type="text/javascript">
+    $('.slider').slick();
+</script>
+<script src="api/box_plot.json"></script>  
     <script src="api/bog_springs.json"></script>  
     <script src="api/rose_canyon.json"></script>  
     <script src="api/spencer_canyon.json"></script>  
     <script src="{{ url_for('static', filename='js/box_plot.js') }}"></script>
     <script src="{{ url_for('static', filename='js/detailed_view.js') }}"></script>
-    
+
   </body>
+  </html>
