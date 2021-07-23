@@ -28,4 +28,6 @@ d3.json("api/box_plot.json").then((temp_data) => {
     
     Plotly.newPlot('temp_summary', data);
     
+    //  Labels and Ticks
+
 });

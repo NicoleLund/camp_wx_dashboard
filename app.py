@@ -150,27 +150,27 @@ def bog_springs_json():
     forecast_dict = {}
 
     results = db.session.query(cg_bog_spring.forecasted_temperature_degF).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecasted_temperature_degF"] = data
 
     results = db.session.query(cg_bog_spring.forecastTime_temperature).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecastTime_temperature"] = data
 
     results = db.session.query(cg_bog_spring.forecasted_windSpeed_miles_per_h).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecasted_windSpeed_miles_per_h"] = data
 
     results = db.session.query(cg_bog_spring.forecastTime_windSpeed).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecastTime_windSpeed"] = data
 
     results = db.session.query(cg_bog_spring.forecasted_windGust_miles_per_h).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecasted_windGust_miles_per_h"] = data
 
     results = db.session.query(cg_bog_spring.forecastTime_windGust).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecastTime_windGust"] = data
 
     results = db.session.query(cg_bog_spring.forecasted_probabilityOfPrecipitation).all()
@@ -182,11 +182,11 @@ def bog_springs_json():
     forecast_dict["forecastTime_probabilityOfPrecipitation"] = data
 
     results = db.session.query(cg_bog_spring.forecasted_quantityOfPrecipitation_mm).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecasted_quantityOfPrecipitation_mm"] = data
 
     results = db.session.query(cg_bog_spring.forecastTime_quantityOfPrecipitation).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecastTime_quantityOfPrecipitation"] = data
 
     detailed_data = [camp_wx_dict, forecast_dict]
@@ -212,19 +212,19 @@ def rose_canyon_json():
     forecast_dict = {}
 
     results = db.session.query(cg_rose_canyon.forecasted_temperature_degF).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecasted_temperature_degF"] = data
 
     results = db.session.query(cg_rose_canyon.forecastTime_temperature).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecastTime_temperature"] = data
 
     results = db.session.query(cg_rose_canyon.forecasted_windSpeed_miles_per_h).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecasted_windSpeed_miles_per_h"] = data
 
     results = db.session.query(cg_rose_canyon.forecastTime_windSpeed).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecastTime_windSpeed"] = data
 
     results = db.session.query(cg_rose_canyon.forecasted_windGust_miles_per_h).all()
@@ -240,15 +240,15 @@ def rose_canyon_json():
     forecast_dict["forecasted_probabilityOfPrecipitation"] = data
 
     results = db.session.query(cg_rose_canyon.forecastTime_probabilityOfPrecipitation).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecastTime_probabilityOfPrecipitation"] = data
 
     results = db.session.query(cg_rose_canyon.forecasted_quantityOfPrecipitation_mm).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecasted_quantityOfPrecipitation_mm"] = data
 
     results = db.session.query(cg_rose_canyon.forecastTime_quantityOfPrecipitation).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecastTime_quantityOfPrecipitation"] = data
 
     detailed_data = [camp_wx_dict, forecast_dict]
@@ -274,31 +274,31 @@ def spencer_canyon_json():
     forecast_dict = {}
 
     results = db.session.query(cg_spencer_canyon.forecasted_temperature_degF).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecasted_temperature_degF"] = data
 
     results = db.session.query(cg_spencer_canyon.forecastTime_temperature).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecastTime_temperature"] = data
 
     results = db.session.query(cg_spencer_canyon.forecasted_windSpeed_miles_per_h).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecasted_windSpeed_miles_per_h"] = data
 
     results = db.session.query(cg_spencer_canyon.forecastTime_windSpeed).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecastTime_windSpeed"] = data
 
     results = db.session.query(cg_spencer_canyon.forecasted_windGust_miles_per_h).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecasted_windGust_miles_per_h"] = data
 
     results = db.session.query(cg_spencer_canyon.forecastTime_windGust).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecastTime_windGust"] = data
 
     results = db.session.query(cg_spencer_canyon.forecasted_probabilityOfPrecipitation).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecasted_probabilityOfPrecipitation"] = data
 
     results = db.session.query(cg_spencer_canyon.forecastTime_probabilityOfPrecipitation).all()
@@ -310,7 +310,7 @@ def spencer_canyon_json():
     forecast_dict["forecasted_quantityOfPrecipitation_mm"] = data
 
     results = db.session.query(cg_spencer_canyon.forecastTime_quantityOfPrecipitation).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecastTime_quantityOfPrecipitation"] = data
 
     detailed_data = [camp_wx_dict, forecast_dict]
