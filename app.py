@@ -6,8 +6,9 @@
 # 
 # By Nicole Lund 
 # 
-# This Python script stores scraped web data in a postgreSQL DB 
-# and displays on a webpage.
+# This python flask app displays weather forecast data 
+# collected from the national weather that is stored in a 
+# heroku postgreSQL DB.
 ####################################################
 
 # Import Dependencies
@@ -130,6 +131,7 @@ def box_plot_json():
 
     return jsonify(temp_data)
 
+
 #################################################
 # bog springs json route
 #################################################
@@ -191,6 +193,7 @@ def bog_springs_json():
 
     return jsonify(detailed_data)
 
+
 #################################################
 # rose canyon json route
 #################################################
@@ -251,6 +254,7 @@ def rose_canyon_json():
     detailed_data = [camp_wx_dict, forecast_dict]
 
     return jsonify(detailed_data)
+
 
 #################################################
 # spencer canyon json route

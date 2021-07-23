@@ -1,10 +1,21 @@
+<!-- 
+####################################################
+index.html
+----
+ 
+By Nicole Lund 
+
+This index.html template displays weather forecast data 
+collected from the national weather that is stored in a 
+heroku postgreSQL DB.
+
+Slick carousel elements were added by Tarak Patel
+####################################################
+-->
+
 <!doctype html>
 <html lang="en">
   <head>
-
-    <!-- The head and script portions were constructed from --> 
-    <!-- https://getbootstrap.com/docs/5.0/getting-started/introduction/ -->
-    <!-- as starter code. -->
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -13,21 +24,22 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-
-    <title>Campground WX</title>
-
     <!-- Slick CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <title>Campground WX</title>
 
   </head>
 
   <body>
     <div class="container">
+
+        <!-- Header Section -->
         <div class="row">
             <div class="col-lg-12" style="background-color:lightgray;">
                 <div class="jumbotron">
@@ -42,6 +54,7 @@
             </div>
         </div>
 
+        <!-- Temperature Box Plot Section -->
         <div class="row">
             <div class="col-lg-12" style="background-color:white;">
                 <br>
@@ -54,6 +67,7 @@
             </div>
         </div>
 
+        <!-- Campground Selector Section -->
         <div class="row">
             <div class="col-lg-2" style="background-color:white;"></div>
             <div class="col-lg-8" style="background-color:lightgray;">
@@ -77,6 +91,7 @@
             <div class="col-lg-2" style="background-color:white;"></div>
         </div>
 
+        <!-- Campground Details Section -->
         <div class="row">
             <div class="col-lg-12" style="background-color:white;">
                 <br>
@@ -86,14 +101,20 @@
         </div>
 
         <div class="row" style="background-color:lightseagreen;">
+            <!-- Useful Information Section -->
             <div class="col-lg-3" >
                 <br>
                 <h4>Fire Danger Level</h4>
-                <p></p>
+                <div id="fire_level">
+                </div>
                 <br>
                 <h4>Resources</h4>
-                <a href='' target="_blank">Forest Service Page</a>
+                <div id="forest_service">
+                </div>
+                
             </div>
+
+            <!-- Detailed Data Section -->
             <div class="col-lg-9">
                 <br>
                 <div class = "container-fluid center">
@@ -102,15 +123,17 @@
                         <!-- Slick Slider -->
                         <ul class="slider">
                             <li>
-                                <img src="https://pandas.pydata.org/pandas-docs/stable/_images/frame_plot_subplots.png">
+                                <div id="line_chart">
+                                </div>
                             </li>
                             <li>
-                                <img src="https://pandas.pydata.org/pandas-docs/stable/_images/series_plot_basic.png">
+                                <div id="google_map">
+                                </div>
                             </li>
                             <li>
-                                <img src="https://pandas.pydata.org/pandas-docs/stable/_images/bar_plot_multi_ex.png">
+                                <div id="campground_image">
+                                </div>
                             </li>
-
                         </ul>
                     </div>
                 </div>
@@ -118,35 +141,54 @@
             </div>
         </div>
 
+        <!-- Author Section -->
         <div class="row">
             <div class="col-lg-12" style="background-color:white;">
                 <br>
-                <br>
+                <h5>Webpage Authors: </h5>
+                <ul>
+                    <li>
+                        <a href="//www.linkedin.com/in/nicolelund-1" target="_Blank">Nicole Lund</a>
+                    </li>
+                    <li>
+                        <a href="" target="_Blank">Tarak Patel</a>
+                    </li>
+                    <li>
+                        <a href="" target="_Blank">Anne Niemiec</a>
+                    </li>
+                </ul>
                 <br>
             </div>
         </div>
 
     </div>
 
+    <!-- JS Setup -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- D3 JS Setup -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+
+    <!-- Plotly JS Setup -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-<!-- slick.min.js -->
+    <!-- Slick JS Setup -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('.slider').slick();
+    </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer">
-</script>
-
-<script type="text/javascript">
-    $('.slider').slick();
-</script>
-<script src="api/box_plot.json"></script>  
+    <!-- Database JSON Retrieval Setup -->
+    <script src="api/box_plot.json"></script>  
     <script src="api/bog_springs.json"></script>  
     <script src="api/rose_canyon.json"></script>  
     <script src="api/spencer_canyon.json"></script>  
+
+    <!-- Plot Development JS -->
     <script src="{{ url_for('static', filename='js/box_plot.js') }}"></script>
     <script src="{{ url_for('static', filename='js/detailed_view.js') }}"></script>
 
   </body>
-  </html>
+</html>
