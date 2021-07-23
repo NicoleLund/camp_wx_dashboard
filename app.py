@@ -42,7 +42,7 @@ uri = os.environ.get('DATABASE_URL', '').replace('postgres://','postgresql://') 
 
 if len(uri) <= 16:
     import sys
-    sys.path.append(r"C:\Users\nlund\Documents\GitHub\untracked_files")
+    sys.path.append(r"C:\Users\anne_\OneDrive\Documents\GitHub\untracked files")
     from camp_wx_uri import uri
     uri = uri.replace('postgres://','postgresql://') + '?sslmode=require'
 

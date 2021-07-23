@@ -2,7 +2,30 @@ d3.json("api/box_plot.json").then((temp_data) => {
     console.log('Box Plot Data');
     console.log(temp_data);
 
-    var temp_summary = d3.select("#temp_summary")
-    temp_summary.append("div")
-        .html("<img src='https://images.squarespace-cdn.com/content/v1/558412b1e4b02581df4f2488/1530706717745-LAH7ZGN79KD01RNQUR11/box+plot+compare.png'>");
+//Create box plot
+///Should these be in separate graphs due to the disparity in the ticker values?
+    
+    var y0 = temp_data[0].bog_springs_temp; 
+    console.log(y0)
+    var y1 = temp_data[0].rose_canyon_temp;
+    console.log(y1)
+    var y2 = temp_data[0].spencer_canyon_temp; 
+    console.log(y2) 
+
+    var trace1 = {
+      y: y0,
+      type: 'box'
+    };
+    var trace2 = {
+        y: y1,
+        type: 'box'
+    };
+      var trace3 = {
+        y: y2,
+        type: 'box'
+    };
+    var data = [trace1,trace2,trace3];
+    
+    Plotly.newPlot('temp_summary', data);
+    
 });
