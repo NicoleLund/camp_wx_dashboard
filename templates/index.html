@@ -14,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
     <!-- Custom CSS -->
-    <link type="text/css" rel="stylesheet" href="/static/css/styles.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
     <title>Campground WX</title>
 
@@ -29,10 +29,7 @@
                     <h1>Campground WX</h1>
                     <p>Find a southwest Arizona drop-in campground with the best weather for the weekend.</p>
                     <hr>
-
-                    <div class = "btn-group">
-                        <a class="btn btn-secondary btn-md" href="/update" role="button">Get the latest weather</a>
-                    </div>
+                    <a class="btn btn-secondary btn-md" href="/update" role="button">Get the latest weather</a>
                     <br>
                     <br>
                 </div>
@@ -45,13 +42,13 @@
                 <h3 class="center">Campground Temperature Summary</h3>
                 <div class = "container-fluid center">
                     <div id="temp_summary">
-                        <img src="http://www.stat.yale.edu/Courses/1997-98/101/boxplot.gif">
                     </div>
                 </div>
                 <br>
             </div>
         </div>
 
+        
         <div class="row">
             <div class="col-lg-2" style="background-color:white;"></div>
             <div class="col-lg-8" style="background-color:lightgray;">
@@ -78,7 +75,7 @@
         <div class="row">
             <div class="col-lg-12" style="background-color:white;">
                 <br>
-                <h3 class="center">{{ selected_data.location }} Campground</h3>
+                <h3 class="center" id="selected_campground">{{ location_display }} Campground</h3>
                 <br>
             </div>
         </div>
@@ -87,10 +84,10 @@
             <div class="col-lg-3" >
                 <br>
                 <h4>Fire Danger Level</h4>
-                <p>{{ selected_data.fire_level }}</p>
+                <p></p>
                 <br>
                 <h4>Resources</h4>
-                <a href={{selected_data.forest_service_url}} target="_blank">{{ selected_data.location }} Forest Service Page</a>
+                <a href='' target="_blank">Forest Service Page</a>
             </div>
             <div class="col-lg-9">
                 <br>
@@ -113,4 +110,16 @@
         </div>
 
     </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <script src="api/box_plot.json"></script>  
+    <script src="api/bog_springs.json"></script>  
+    <script src="api/rose_canyon.json"></script>  
+    <script src="api/spencer_canyon.json"></script>  
+    <script src="{{ url_for('static', filename='js/box_plot.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/detailed_view.js') }}"></script>
+    
   </body>
