@@ -43,4 +43,12 @@ function build_page(data) {
     d3.select("#fire_level")
         .append("p")
         .text(data[0].fire_danger);
+
+    // Add forest service url
+    d3.select('#forest_service')
+        .append("a")
+        .attr("href", data[0].forest_url)
+        .attr("target", "_blank")
+        .html(data[0].campground + ' Forest Service Webpage');
+        
 };
