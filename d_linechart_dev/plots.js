@@ -1,21 +1,7 @@
 // Plotly stacked line charts of Temp, Winds, & Precip 
 // See https://plotly.com/javascript/subplots/#stacked-subplots-with-a-shared-x-axis
 
-
-// json data:
-// d3.json("https://api.weather.gov/gridpoints/TWC/101,54").then(function(weather_data){console.log(weather_data)
-
-
-    // Probability of Precipitation. 
-        // forecasted_probabilityOfPrecipitation = result.properties.probabilityOfPrecipitation.values[i].value
-        // forecastTime_probabilityOfPrecipitation = result.properties.probabilityOfPrecipitation.values[i].validTime
-
-    // Quantity of Precipitation. 
-        // forecasted_quantityOfPrecipitation_mm = result.properties.quantitativePrecipitation.values[i].value
-        // forecastTime_quantityOfPrecipitation = result.properties.quantitativePrecipitation.values[i].validTime
-
-////////////////////////////////////////////////////////
-//Build query URL
+//Build query URL & d3.json
 d3.json("https://api.weather.gov/gridpoints/TWC/101,54").then(function(weather_data){
     console.log(weather_data)
 
