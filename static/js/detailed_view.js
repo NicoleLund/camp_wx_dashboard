@@ -60,4 +60,9 @@ function build_page(data) {
     d3.select("#google_map")
         .append("div")
         .html(data[0].map_code);
+
+    // Add campground image to carousel
+    d3.select("#campground_image")
+        .append("div")
+        .html("<img src='" + data[0].campsite_url +"'>");
 };
