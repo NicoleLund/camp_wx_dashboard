@@ -32,6 +32,7 @@ import refresh_data
 #################################################
 app = Flask(__name__)
 
+
 #################################################
 # Database Setup
 #################################################
@@ -61,21 +62,57 @@ camp_wx, cg_bog_spring, cg_rose_canyon, cg_spencer_canyon = create_classes(db)
 #################################################
 @app.route("/")
 def index():
-    # refreshed_data = refresh_data.refresh()
-    # selected_data = refreshed_data['bog_springs_fire']
+    # Delete existing db table rows
+
+    # Insert refreshed data into db table rows
+
+    return render_template("index.html", location_display = 'Bog Springs')
+
+
+#################################################
+# update route
+#################################################
+@app.route("/update")
+def update_data():
+    # Retrieve current displayed campground
+    location_display = 'Bog Springs'
 
     # Delete existing db table rows
 
     # Insert refreshed data into db table rows
 
-    # return render_template("index.html", selected_data=selected_data)
-    return render_template("index.html")
+    return render_template("index.html", location_display = location_display)
+
 
 #################################################
-# box_plot route
+# Bog Springs route
+#################################################
+@app.route("/bog_springs")
+def show_bog_springs():
+    return render_template("index.html", location_display = 'Bog Springs')
+
+
+#################################################
+# Rose Canyon route
+#################################################
+@app.route("/rose_canyon")
+def show_rose_canyon():
+    return render_template("index.html", location_display = 'Rose Canyon')
+    
+
+#################################################
+# Bog Springs route
+#################################################
+@app.route("/spencer_canyon")
+def show_spencer_canyon():
+    return render_template("index.html", location_display = 'Spencer Canyon')
+
+
+#################################################
+# box_plot json route
 #################################################
 @app.route("/api/box_plot.json")
-def box_plot():
+def box_plot_json():
     # Bog Springs Temperature Forecast
     bg_temp_results = db.session.query(cg_bog_spring.forecasted_temperature_degF).all()
     bg_temp = [bg_temp_results[0][0] for result in bg_temp_results]
@@ -96,27 +133,11 @@ def box_plot():
 
     return jsonify(temp_data)
 
-
-# #################################################
-# # update route
-# #################################################
-# @app.route("/update")
-# def update_data():
-#     # refreshed_data = refresh_data.refresh()
-#     # selected_data = refreshed_data['bog_springs_fire']
-
-#     # Delete existing db table rows
-
-#     # Insert refreshed data into db table rows
-
-#     return render_template("index.html", selected_data=selected_data)
-
-
 #################################################
-# bog springs route
+# bog springs json route
 #################################################
 @app.route("/api/bog_springs.json")
-def show_bog_springs():
+def bog_springs_json():
     camp_wx_results = db.session.query(camp_wx.campground,camp_wx.forest_url,camp_wx.campsite_url,camp_wx.fire_danger,camp_wx.map_code).all()
 
     camp_wx_dict = {
@@ -174,10 +195,10 @@ def show_bog_springs():
     return jsonify(detailed_data)
 
 #################################################
-# rose canyon route
+# rose canyon json route
 #################################################
 @app.route("/api/rose_canyon.json")
-def show_rose_canyon():
+def rose_canyon_json():
     camp_wx_results = db.session.query(camp_wx.campground,camp_wx.forest_url,camp_wx.campsite_url,camp_wx.fire_danger,camp_wx.map_code).all()
 
     camp_wx_dict = {
@@ -235,10 +256,10 @@ def show_rose_canyon():
     return jsonify(detailed_data)
 
 #################################################
-# spencer canyon route
+# spencer canyon json route
 #################################################
 @app.route("/api/spencer_canyon.json")
-def show_spencer_canyon():
+def spencer_canyon_json():
     camp_wx_results = db.session.query(camp_wx.campground,camp_wx.forest_url,camp_wx.campsite_url,camp_wx.fire_danger,camp_wx.map_code).all()
 
     camp_wx_dict = {
