@@ -51,11 +51,13 @@ function build_page(data) {
         .attr("target", "_blank")
         .html(data[0].campground + ' Forest Service Webpage');
         
-
     // Add line chart to carousel
     d3.select("#line_chart")
         .append("div")
         .html("<img src='https://pandas.pydata.org/pandas-docs/stable/_images/frame_plot_subplots.png'>");
         
-
+    // Add google map to carousel
+    d3.select("#google_map")
+        .append("div")
+        .html(data[0].map_code);
 };
