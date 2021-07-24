@@ -50,6 +50,10 @@ if len(uri) <= 16:
         sys.path.append(r"C:\Users\anne_\OneDrive\Documents\GitHub\untracked files")
     except:
         print('Failed to load anne path')
+    try:
+        sys.path.append(r"C:\Users\tarak\Documents\GitHub\Untracked Files")
+    except:
+        print('Failed to load tarak path')
     from camp_wx_uri import uri
     uri = uri.replace('postgres://','postgresql://') + '?sslmode=require'
 
