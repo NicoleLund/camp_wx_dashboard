@@ -72,6 +72,7 @@ function line_chart(data) {
     var quantityPrecipitation = data[1].forecasted_quantityOfPrecipitation_mm
     var quantityPrecipitation_times = data[1].forecastTime_quantityOfPrecipitation
 
+    // var parseTime = d3.timeParse("%m-%d %I%p")
     // Windspeed Section
     var windspeed_trace = {
         x: windSpeed_times,
@@ -80,12 +81,14 @@ function line_chart(data) {
         mode: 'lines+markers',
         type: 'scatter'
     };
+console.log(windSpeed_times)
 
     var windspeed_layout = {
+        title: "Wind Speed",
         xaxis: {
-            title: 'Date/Time',
+            // title: 'Date/Time',
             visible: true,
-            showticklabels: false
+            showticklabels: true
         },
         yaxis: {
             title: 'Wind Speed (mph)',
@@ -96,6 +99,82 @@ function line_chart(data) {
 
     Plotly.newPlot('windspeed_chart', [windspeed_trace], windspeed_layout);
 
+// Temperature Section
+var temp_trace = {
+    x: temp_times,
+    y: temps,
+    name: "Temperature (F)",
+    mode: 'lines+markers',
+    type: 'scatter'
+};
+
+var temp_layout = {
+    title: "Temperature",
+    xaxis: {
+        // title: 'Date/Time',
+        visible: true,
+        showticklabels: true
+    },
+    yaxis: {
+        title: 'Temperature (F)',
+        visible: true,
+        showticklabels: true
+    }
+};
+
+Plotly.newPlot('temp_chart', [temp_trace], temp_layout);
+
+// Precipitation Probability Section
+var precipitation_trace = {
+    x: precipitation_times,
+    y: precipitation,
+    name: "Rainfall (%)",
+    mode: 'lines+markers',
+    type: 'scatter'
+};
+
+var precipitation_layout = {
+    title: "Probability of Rain",
+    xaxis: {
+        // title: 'Date/Time',
+        visible: true,
+        showticklabels: true
+    },
+    yaxis: {
+        title: 'Rainfall (%)',
+        visible: true,
+        showticklabels: true
+    }
+};
+
+Plotly.newPlot("precip_probability_chart", [precipitation_trace], precipitation_layout);
+
+// Precipitation Quantity Section
+var quantityPrecipitation_trace = {
+    x: quantityPrecipitation_times,
+    y: quantityPrecipitation,
+    name: "Rainfall (in)",
+    mode: 'lines+markers',
+    type: 'scatter'
+};
+
+var quantityPrecipitation_layout = {
+    title: "Amount of Rainfall",
+    xaxis: {
+        // title: 'Date/Time',
+        visible: true,
+        showticklabels: true
+    },
+    yaxis: {
+        title: 'Rainfall (in)',
+        visible: true,
+        showticklabels: true
+    }
+};
+
+Plotly.newPlot("precip_quantity_chart", [quantityPrecipitation_trace], quantityPrecipitation_layout);
+
+// Plotly.newPlot'windSpeed_chart','temp_summary');
 
 
     // // Precipitation Probaility Section
