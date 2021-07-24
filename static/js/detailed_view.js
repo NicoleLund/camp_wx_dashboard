@@ -75,96 +75,180 @@ function line_chart(data) {
     var trace1 = {
         x: windSpeed_times,
         y: windSpeed,
-        // xaxis: '%d %B (%a)<br>%Y',
+        name: "Wind Speed (mph)",
         mode: 'lines+markers',
-        type: 'scatter'
+        type: 'scatter',
+        scene: "scene1"
     };
       
     var trace2 = {
         x: windGust_times,
         y: windGust,
+        name: "Windgust (mph)",
         xaxis: 'x2',
         yaxis: 'y2',
         mode: 'lines+markers',
-        type: 'scatter'
+        type: 'scatter',
+        scene: "scene2"
     };
       
     var trace3 = {
         x: temp_times,
         y: temps,
+        name: "Temperature (F)",
         xaxis: 'x3',
         yaxis: 'y3',
         mode: 'lines+markers',
-        type: 'scatter'
+        type: 'scatter',
+        scene: "scene3"
     };
 
     var trace4 = {
         x: precipitation_times,
         y: precipitation,
+        name: "Probability of Rain (%)",
         xaxis: 'x4',
         yaxis: 'y4',
         mode: 'lines+markers',
-        type: 'scatter'
+        type: 'scatter',
+        scene: "scene4"
     };
       
     var trace5 = {
         x: quantityPrecipitation_times,
         y: quantityPrecipitation,
+        name: "Predicted Rainfall Amount (mm)",
         xaxis: 'x5',
         yaxis: 'y5',
         mode: 'lines+markers',
-        type: 'scatter'
+        type: 'scatter',
+        scene: "scene5"
         
-    };
-      
-    var data_traces = [trace1, trace2,trace3,trace4,trace5];
-      
-    var layout = {
-        grid: {
-          rows: 5,
-          columns: 1,
-          pattern: 'independent',
-          roworder: 'bottom to top'}
     };
 
     //Formatting
-
-    layout = go.Layout(
-        width = 800,
-        height = 500,
-        title = "ABC",
-        xaxis = dict(
-        nticks = 10,
-        title = "shared X axis showing DATE"
-        ),
-        yaxis1 = dict(
-        scaleanchor = "x",
-        title = "Windspeed (mph)"
-        ),
-        yaxis2 = dict(
-        scaleanchor = "x",
-        title = "Windgust (mph)"
-        ),
-        yaxis3 = dict(
-        scaleanchor = "x",
-        title = "Temperature (F)"
-        ),
-        yaxis4 = dict(
-        scaleanchor = "x",
-        title = "Probability of Rain"
-        ),
-        yaxis5 = dict(
-        scaleanchor = "x",
-        title = "Predicted Rainfall Amount (ml)"
-        ),
-        showlegend= True
-    )
-
-    fig = go.Figure(data=data, layout=layout)
-    plotly.offline.plot(fig, filename=str(DateDebut) +" a "+ str(DateFin) + ".csv", auto_open=True)
-    fig = plotly.tools.make_subplots(rows=5, cols=1)
+       
+    var data_traces = [trace1, trace2,trace3,trace4,trace5];
+      
+    var layout = {
+        // grid: {
+        //   rows: 5,
+        //   columns: 1,
+        //   pattern: 'independent',
+        //   roworder: 'bottom to top'},
+        // title: "ABC",
+        scene1: {
+            domain: {
+                x: [0.0, 1.0],
+                y: [0.8,1.0]
+            },
+            xaxis: {
+                title: 'x-label',
+                visible: true,
+                showticklabels: false
+            },
+            yaxis: {
+                title: 'y-label',
+                visible: true,
+                showticklabels: true
+            }
+        },
+        scene2: {
+            domain: {
+                x: [0.0, 1.0],
+                y: [0.6,0.8]
+            },
+            xaxis: {
+                title: 'x-label',
+                visible: true,
+                showticklabels: false
+            },
+            yaxis: {
+                title: 'y-label',
+                visible: true,
+                showticklabels: true
+            }
+        },
+        scene3: {
+            domain: {
+                x: [0.0, 1.0],
+                y: [0.4,0.6]
+            },
+            xaxis: {
+                title: 'x-label',
+                visible: true,
+                showticklabels: false
+            },
+            yaxis: {
+                title: 'y-label',
+                visible: true,
+                showticklabels: true
+            }
+        },
+        scene4: {
+            domain: {
+                x: [0.0, 1.0],
+                y: [0.2,0.4]
+            },
+            xaxis: {
+                title: 'x-label',
+                visible: true,
+                showticklabels: false
+            },
+            yaxis: {
+                title: 'y-label',
+                visible: true,
+                showticklabels: true
+            }
+        },
+        scene5: {
+            domain: {
+                x: [0.0, 1.0],
+                y: [0.0,0.2]
+            },
+            xaxis: {
+                title: 'x-label',
+                visible: true,
+                showticklabels: false
+            },
+            yaxis: {
+                title: 'y-label',
+                visible: true,
+                showticklabels: true
+            }
+        }
+        // xaxis: {
+        //     nticks: 20,
+        //     title: "Shared Date"
+        // },
+        // yaxis1: {
+        //     // scaleanchor: "x",
+        //     legendtitle: "Windspeed (mph)"
+        // },
+        // yaxis2: {
+        //     // scaleanchor: "x",
+        //     legendtitle: "Windgust (mph)"
+        // },
+        // yaxis3: {
+        //     // scaleanchor: "x",
+        //     legendtitle: "Temperature (F)"
+        // },
+        // yaxis4:{
+        //     // scaleanchor: "x",
+        //     legendtitle: "Probability of Rain (%)"
+        // },
+        // yaxis5:{
+        //     // scaleanchor: "x",
+        //     legendtitle: "Predicted Rainfall Amount (mm)"
+        // }
+        // showlegend: true
+    }
+    // fig = go.Figure(data=data, layout=layout)
+    // // plotly.offline.plot(fig, filename=str(DateDebut) +" a "+ str(DateFin) + ".csv", auto_open=true)
+    // fig = plotly.tools.make_subplots(rows=5, cols=1, shared_xaxes=true)
 
     // Plot traces 
     Plotly.newPlot('line_chart', data_traces, layout);
+};
 
-}
+
