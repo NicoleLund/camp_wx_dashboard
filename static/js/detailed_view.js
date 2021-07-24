@@ -72,14 +72,59 @@ function line_chart(data) {
     var quantityPrecipitation = data[1].forecasted_quantityOfPrecipitation_mm
     var quantityPrecipitation_times = data[1].forecastTime_quantityOfPrecipitation
 
-    var trace1 = {
+    // Windspeed Section
+    var windspeed_trace = {
         x: windSpeed_times,
         y: windSpeed,
         name: "Wind Speed (mph)",
         mode: 'lines+markers',
-        type: 'scatter',
-        scene: "scene1"
+        type: 'scatter'
     };
+
+    var windspeed_layout = {
+        xaxis: {
+            title: 'Date/Time',
+            visible: true,
+            showticklabels: false
+        },
+        yaxis: {
+            title: 'Wind Speed (mph)',
+            visible: true,
+            showticklabels: true
+        }
+    };
+
+    Plotly.newPlot('windspeed_chart', [windspeed_trace], windspeed_layout);
+
+
+
+    // // Precipitation Probaility Section
+    // var precip_prob_trace = {
+    //     x: precipitation_times,
+    //     y: precipitation,
+    //     name: "Probability of Rain (%)",
+    //     mode: 'lines+markers',
+    //     type: 'scatter'
+    // };
+
+    // var precip_prob_layout = {
+    //     xaxis: {
+    //         title: 'x-label',
+    //         visible: true,
+    //         showticklabels: true
+    //     },
+    //     yaxis: {
+    //         title: 'y-label',
+    //         visible: true,
+    //         showticklabels: true
+    //     }
+    // }
+
+    // Plotly.newPlot('precip_probability_chart', precip_prob_trace, precip_prob_layout);
+
+
+
+
       
     var trace2 = {
         x: windGust_times,
@@ -128,127 +173,127 @@ function line_chart(data) {
 
     //Formatting
        
-    var data_traces = [trace1, trace2,trace3,trace4,trace5];
-      
-    var layout = {
-        // grid: {
-        //   rows: 5,
-        //   columns: 1,
-        //   pattern: 'independent',
-        //   roworder: 'bottom to top'},
-        // title: "ABC",
-        scene1: {
-            domain: {
-                x: [0.0, 1.0],
-                y: [0.8,1.0]
-            },
-            xaxis: {
-                title: 'x-label',
-                visible: true,
-                showticklabels: false
-            },
-            yaxis: {
-                title: 'y-label',
-                visible: true,
-                showticklabels: true
-            }
-        },
-        scene2: {
-            domain: {
-                x: [0.0, 1.0],
-                y: [0.6,0.8]
-            },
-            xaxis: {
-                title: 'x-label',
-                visible: true,
-                showticklabels: false
-            },
-            yaxis: {
-                title: 'y-label',
-                visible: true,
-                showticklabels: true
-            }
-        },
-        scene3: {
-            domain: {
-                x: [0.0, 1.0],
-                y: [0.4,0.6]
-            },
-            xaxis: {
-                title: 'x-label',
-                visible: true,
-                showticklabels: false
-            },
-            yaxis: {
-                title: 'y-label',
-                visible: true,
-                showticklabels: true
-            }
-        },
-        scene4: {
-            domain: {
-                x: [0.0, 1.0],
-                y: [0.2,0.4]
-            },
-            xaxis: {
-                title: 'x-label',
-                visible: true,
-                showticklabels: false
-            },
-            yaxis: {
-                title: 'y-label',
-                visible: true,
-                showticklabels: true
-            }
-        },
-        scene5: {
-            domain: {
-                x: [0.0, 1.0],
-                y: [0.0,0.2]
-            },
-            xaxis: {
-                title: 'x-label',
-                visible: true,
-                showticklabels: false
-            },
-            yaxis: {
-                title: 'y-label',
-                visible: true,
-                showticklabels: true
-            }
-        }
-        // xaxis: {
-        //     nticks: 20,
-        //     title: "Shared Date"
-        // },
-        // yaxis1: {
-        //     // scaleanchor: "x",
-        //     legendtitle: "Windspeed (mph)"
-        // },
-        // yaxis2: {
-        //     // scaleanchor: "x",
-        //     legendtitle: "Windgust (mph)"
-        // },
-        // yaxis3: {
-        //     // scaleanchor: "x",
-        //     legendtitle: "Temperature (F)"
-        // },
-        // yaxis4:{
-        //     // scaleanchor: "x",
-        //     legendtitle: "Probability of Rain (%)"
-        // },
-        // yaxis5:{
-        //     // scaleanchor: "x",
-        //     legendtitle: "Predicted Rainfall Amount (mm)"
-        // }
-        // showlegend: true
-    }
+    // var data_traces = [trace1, trace2,trace3,trace4,trace5];
+    
+
+    // var layout = {
+    //     grid: {
+    //       rows: 5,
+    //       columns: 1,
+    //       pattern: 'independent',
+    //       roworder: 'bottom to top'},
+    //     title: "ABC",
+    //     scene1: {
+    //         domain: {
+    //             x: [0.0, 1.0],
+    //             y: [0.8,1.0]
+    //         },
+    //         xaxis: {
+    //             title: 'x-label',
+    //             visible: true,
+    //             showticklabels: false
+    //         },
+    //         yaxis: {
+    //             title: 'y-label',
+    //             visible: true,
+    //             showticklabels: true
+    //         }
+    //     },
+    //     scene2: {
+    //         domain: {
+    //             x: [0.0, 1.0],
+    //             y: [0.6,0.8]
+    //         },
+    //         xaxis: {
+    //             title: 'x-label',
+    //             visible: true,
+    //             showticklabels: false
+    //         },
+    //         yaxis: {
+    //             title: 'y-label',
+    //             visible: true,
+    //             showticklabels: true
+    //         }
+    //     },
+    //     scene3: {
+    //         domain: {
+    //             x: [0.0, 1.0],
+    //             y: [0.4,0.6]
+    //         },
+    //         xaxis: {
+    //             title: 'x-label',
+    //             visible: true,
+    //             showticklabels: false
+    //         },
+    //         yaxis: {
+    //             title: 'y-label',
+    //             visible: true,
+    //             showticklabels: true
+    //         }
+    //     },
+    //     scene4: {
+    //         domain: {
+    //             x: [0.0, 1.0],
+    //             y: [0.2,0.4]
+    //         },
+    //         xaxis: {
+    //             title: 'x-label',
+    //             visible: true,
+    //             showticklabels: false
+    //         },
+    //         yaxis: {
+    //             title: 'y-label',
+    //             visible: true,
+    //             showticklabels: true
+    //         }
+    //     },
+    //     scene5: {
+    //         domain: {
+    //             x: [0.0, 1.0],
+    //             y: [0.0,0.2]
+    //         },
+    //         xaxis: {
+    //             title: 'x-label',
+    //             visible: true,
+    //             showticklabels: false
+    //         },
+    //         yaxis: {
+    //             title: 'y-label',
+    //             visible: true,
+    //             showticklabels: true
+    //         }
+    //     }
+    //     // xaxis: {
+    //     //     nticks: 20,
+    //     //     title: "Shared Date"
+    //     // },
+    //     // yaxis1: {
+    //     //     // scaleanchor: "x",
+    //     //     legendtitle: "Windspeed (mph)"
+    //     // },
+    //     // yaxis2: {
+    //     //     // scaleanchor: "x",
+    //     //     legendtitle: "Windgust (mph)"
+    //     // },
+    //     // yaxis3: {
+    //     //     // scaleanchor: "x",
+    //     //     legendtitle: "Temperature (F)"
+    //     // },
+    //     // yaxis4:{
+    //     //     // scaleanchor: "x",
+    //     //     legendtitle: "Probability of Rain (%)"
+    //     // },
+    //     // yaxis5:{
+    //     //     // scaleanchor: "x",
+    //     //     legendtitle: "Predicted Rainfall Amount (mm)"
+    //     // }
+    //     // showlegend: true
+    // }
     // fig = go.Figure(data=data, layout=layout)
     // // plotly.offline.plot(fig, filename=str(DateDebut) +" a "+ str(DateFin) + ".csv", auto_open=true)
     // fig = plotly.tools.make_subplots(rows=5, cols=1, shared_xaxes=true)
 
     // Plot traces 
-    Plotly.newPlot('line_chart', data_traces, layout);
 };
 
 
