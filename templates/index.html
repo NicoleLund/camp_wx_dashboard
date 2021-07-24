@@ -1,0 +1,194 @@
+<!-- 
+####################################################
+index.html
+----
+ 
+By Nicole Lund 
+
+This index.html template displays weather forecast data 
+collected from the national weather that is stored in a 
+heroku postgreSQL DB.
+
+Slick carousel elements were added by Tarak Patel
+####################################################
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <!-- Slick CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <title>Campground WX</title>
+
+  </head>
+
+  <body>
+    <div class="container">
+
+        <!-- Header Section -->
+        <div class="row">
+            <div class="col-lg-12" style="background-color:lightgray;">
+                <div class="jumbotron">
+                    <br>
+                    <h1>Campground WX</h1>
+                    <p>Find a southwest Arizona drop-in campground with the best weather for the weekend.</p>
+                    <hr>
+                    <a class="btn btn-secondary btn-md" href="/update" role="button">Get the latest weather</a>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <!-- Temperature Box Plot Section -->
+        <div class="row">
+            <div class="col-lg-12" style="background-color:white;">
+                <br>
+                <h3 class="center">Campground Temperature Summary</h3>
+                <div class = "container-fluid center">
+                    <div id="temp_summary">
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+
+        <!-- Campground Selector Section -->
+        <div class="row">
+            <div class="col-lg-2" style="background-color:white;"></div>
+            <div class="col-lg-8" style="background-color:lightgray;">
+                <br>
+                <h3 class="center">Select Campground Details</h1>
+                <br>
+                <div class = "container-fluid center">
+                    <div class = "btn-group">
+                        <a class="btn btn-secondary btn-md" href="/bog_springs" role="button">Show Bog Springs Details</a>
+                    </div>
+                    <div class = "btn-group">
+                        <a class="btn btn-secondary btn-md" href="/rose_canyon" role="button">Show Rose Canyon Details</a>
+                    </div>
+                    <div class = "btn-group">
+                        <a class="btn btn-secondary btn-md" href="/spencer_canyon" role="button">Show Spencer Canyon Details</a>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </div>
+            <div class="col-lg-2" style="background-color:white;"></div>
+        </div>
+
+        <!-- Campground Details Section -->
+        <div class="row">
+            <div class="col-lg-12" style="background-color:white;">
+                <br>
+                <h3 class="center" id="selected_campground">{{ location_display }} Campground</h3>
+                <br>
+            </div>
+        </div>
+
+        <div class="row" style="background-color:lightseagreen;">
+            <!-- Useful Information Section -->
+            <div class="col-lg-3" >
+                <br>
+                <h4>Fire Danger Level</h4>
+                <div id="fire_level">
+                </div>
+                <br>
+                <h4>Resources</h4>
+                <div id="forest_service">
+                </div>
+                
+            </div>
+
+            <!-- Detailed Data Section -->
+            <div class="col-lg-9">
+                <br>
+                <div class = "container-fluid center">
+                    <div id="campground_details">
+                        <h4>Campground Details Carousel</h4>
+                        <!-- Slick Slider -->
+                        <ul class="slider">
+                            <li>
+                                <div id="line_chart">
+                                </div>
+                            </li>
+                            <li>
+                                <div id="google_map">
+                                </div>
+                            </li>
+                            <li>
+                                <div id="campground_image">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+
+        <!-- Author Section -->
+        <div class="row">
+            <div class="col-lg-12" style="background-color:white;">
+                <br>
+                <h5>Webpage Authors: </h5>
+                <ul>
+                    <li>
+                        <a href="//www.linkedin.com/in/nicolelund-1" target="_Blank">Nicole Lund</a>
+                    </li>
+                    <li>
+                        <a href="" target="_Blank">Tarak Patel</a>
+                    </li>
+                    <li>
+                        <a href="" target="_Blank">Anne Niemiec</a>
+                    </li>
+                </ul>
+                <br>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS Setup -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- D3 JS Setup -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+
+    <!-- Plotly JS Setup -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Slick JS Setup -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+
+    <script type="text/javascript">
+        $('.slider').slick();
+    </script>
+
+    <!-- Database JSON Retrieval Setup -->
+    <script src="api/box_plot.json"></script>  
+    <script src="api/bog_springs.json"></script>  
+    <script src="api/rose_canyon.json"></script>  
+    <script src="api/spencer_canyon.json"></script>  
+
+    <!-- Plot Development JS -->
+    <script src="{{ url_for('static', filename='js/box_plot.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/detailed_view.js') }}"></script>
+
+  </body>
+</html>
