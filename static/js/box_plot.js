@@ -14,17 +14,17 @@ d3.json("api/box_plot.json").then((temp_data) => {
 
     var trace1 = {
       y: y0,
-      name: "Bog Springs"
+      name: "Bog Springs",
       type: 'box'
     };
     var trace2 = {
         y: y1,
-        name: "Rose Canyon"
+        name: "Rose Canyon",
         type: 'box'
     };
       var trace3 = {
         y: y2,
-        name: "Spencer Canyon"
+        name: "Spencer Canyon",
         type: 'box'
     };
     var data = [trace1,trace2,trace3];
