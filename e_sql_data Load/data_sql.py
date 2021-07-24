@@ -765,15 +765,12 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func, inspect
 import psycopg2
 
-
-from postgres_pswd import host, database, username, passwd
-
 # Define how many sectors to display in the output of the sector analysis
 output='top3'
 
 # Create engine to mutual_funds database
+engine_startup = 'postgresql://username:password@host/database?sslmode=require'
 
-engine_startup = 'postgresql://hgquoluqhpempn:1250a45ed32360cfb6492b98943bc4cd80699a8f00a1144625b3cf52b2db11c9@ec2-44-194-112-166.compute-1.amazonaws.com:5432/d3lajcergj0dej?sslmode=require'
 engine = create_engine(engine_startup)
 
 # reflect the existing database into a new model
