@@ -14,14 +14,17 @@ d3.json("api/box_plot.json").then((temp_data) => {
 
     var trace1 = {
       y: y0,
+      name: "Bog Springs"
       type: 'box'
     };
     var trace2 = {
         y: y1,
+        name: "Rose Canyon"
         type: 'box'
     };
       var trace3 = {
         y: y2,
+        name: "Spencer Canyon"
         type: 'box'
     };
     var data = [trace1,trace2,trace3];
@@ -29,9 +32,8 @@ d3.json("api/box_plot.json").then((temp_data) => {
     Plotly.newPlot('temp_summary', data);
     
     //  Labels and Ticks
-    // boxplot(temp_data)
+    // boxplot(temp_summary)
     //     at = c(1,2,4,5),
-    //     names = c("Box Springs", "Rose Canyon", "Spencer Canyon"),
     //     las = 2,
     //     col = c("orange","red"),
     //     border = "brown",
