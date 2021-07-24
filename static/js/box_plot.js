@@ -29,5 +29,14 @@ d3.json("api/box_plot.json").then((temp_data) => {
     Plotly.newPlot('temp_summary', data);
     
     //  Labels and Ticks
+    // boxplot(temp_data)
+    //     at = c(1,2,4,5),
+    //     names = c("Box Springs", "Rose Canyon", "Spencer Canyon"),
+    //     las = 2,
+    //     col = c("orange","red"),
+    //     border = "brown",
+    //     horizontal = TRUE,
 
+    //     notch = TRUE
+    //     )
 });

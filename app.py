@@ -114,7 +114,7 @@ def box_plot_json():
     # Bog Springs Temperature Forecast
     bg_temp_results = db.session.query(cg_bog_spring.forecasted_temperature_degF).all()
     bg_temp = [bg_temp_results[0][0] for result in bg_temp_results]
-
+    print(bg_temp)
     # Rose Canyon Temperature Forecast
     rc_temp_results = db.session.query(cg_rose_canyon.forecasted_temperature_degF).all()
     rc_temp = [rc_temp_results[0][0] for result in rc_temp_results]
@@ -174,11 +174,11 @@ def bog_springs_json():
     forecast_dict["forecastTime_windGust"] = data
 
     results = db.session.query(cg_bog_spring.forecasted_probabilityOfPrecipitation).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecasted_probabilityOfPrecipitation"] = data
 
     results = db.session.query(cg_bog_spring.forecastTime_probabilityOfPrecipitation).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecastTime_probabilityOfPrecipitation"] = data
 
     results = db.session.query(cg_bog_spring.forecasted_quantityOfPrecipitation_mm).all()
@@ -228,15 +228,15 @@ def rose_canyon_json():
     forecast_dict["forecastTime_windSpeed"] = data
 
     results = db.session.query(cg_rose_canyon.forecasted_windGust_miles_per_h).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecasted_windGust_miles_per_h"] = data
 
     results = db.session.query(cg_rose_canyon.forecastTime_windGust).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecastTime_windGust"] = data
 
     results = db.session.query(cg_rose_canyon.forecasted_probabilityOfPrecipitation).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecasted_probabilityOfPrecipitation"] = data
 
     results = db.session.query(cg_rose_canyon.forecastTime_probabilityOfPrecipitation).all()
@@ -254,7 +254,6 @@ def rose_canyon_json():
     detailed_data = [camp_wx_dict, forecast_dict]
 
     return jsonify(detailed_data)
-
 
 #################################################
 # spencer canyon json route
