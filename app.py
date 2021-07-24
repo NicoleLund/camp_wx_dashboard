@@ -42,7 +42,14 @@ uri = os.environ.get('DATABASE_URL', '').replace('postgres://','postgresql://') 
 
 if len(uri) <= 16:
     import sys
-    sys.path.append(r"C:\Users\anne_\OneDrive\Documents\GitHub\untracked files")
+    try:
+        sys.path.append(r"C:\Users\nlund\Documents\GitHub\untracked_files")
+    except:
+        print('Failed to load nlund path')
+    try:
+        sys.path.append(r"C:\Users\anne_\OneDrive\Documents\GitHub\untracked files")
+    except:
+        print('Failed to load anne path')
     from camp_wx_uri import uri
     uri = uri.replace('postgres://','postgresql://') + '?sslmode=require'
 
@@ -111,25 +118,25 @@ def show_spencer_canyon():
 #################################################
 @app.route("/api/box_plot.json")
 def box_plot_json():
+
+    temp_data = {}
+
     # Bog Springs Temperature Forecast
-    bg_temp_results = db.session.query(cg_bog_spring.forecasted_temperature_degF).all()
-    bg_temp = [bg_temp_results[0][0] for result in bg_temp_results]
-    print(bg_temp)
+    results = db.session.query(cg_bog_spring.forecasted_temperature_degF).all()
+    data = [datum[0] for datum in results]
+    temp_data["bog_springs_temp"] = data
+
     # Rose Canyon Temperature Forecast
-    rc_temp_results = db.session.query(cg_rose_canyon.forecasted_temperature_degF).all()
-    rc_temp = [rc_temp_results[0][0] for result in rc_temp_results]
+    results = db.session.query(cg_rose_canyon.forecasted_temperature_degF).all()
+    data = [datum[0] for datum in results]
+    temp_data["rose_canyon_temp"] = data
 
     # Spencer Canyon Temperature Forecast
-    sc_temp_results = db.session.query(cg_spencer_canyon.forecasted_temperature_degF).all()
-    sc_temp = [sc_temp_results[0][0] for result in sc_temp_results]
+    results = db.session.query(cg_spencer_canyon.forecasted_temperature_degF).all()
+    data = [datum[0] for datum in results]
+    temp_data["spencer_canyon_temp"] = data
 
-    temp_data = [{
-        "bog_springs_temp": bg_temp,
-        "rose_canyon_temp": rc_temp,
-        "spencer_canyon_temp": sc_temp
-    }]
-
-    return jsonify(temp_data)
+    return jsonify([temp_data])
 
 
 #################################################
@@ -255,6 +262,7 @@ def rose_canyon_json():
 
     return jsonify(detailed_data)
 
+
 #################################################
 # spencer canyon json route
 #################################################
@@ -301,11 +309,11 @@ def spencer_canyon_json():
     forecast_dict["forecasted_probabilityOfPrecipitation"] = data
 
     results = db.session.query(cg_spencer_canyon.forecastTime_probabilityOfPrecipitation).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecastTime_probabilityOfPrecipitation"] = data
 
     results = db.session.query(cg_spencer_canyon.forecasted_quantityOfPrecipitation_mm).all()
-    data = [results[0][0] for datum in results]
+    data = [datum[0] for datum in results]
     forecast_dict["forecasted_quantityOfPrecipitation_mm"] = data
 
     results = db.session.query(cg_spencer_canyon.forecastTime_quantityOfPrecipitation).all()
