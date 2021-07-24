@@ -27,6 +27,7 @@ import psycopg2
 # Import local file dependencies
 from models import create_classes
 import refresh_data
+from data_sql import update_db
 
 #################################################
 # Flask Setup
@@ -74,10 +75,6 @@ camp_wx, cg_bog_spring, cg_rose_canyon, cg_spencer_canyon = create_classes(db)
 #################################################
 @app.route("/")
 def index():
-    # Delete existing db table rows
-
-    # Insert refreshed data into db table rows
-
     return render_template("index.html", location_display = 'Bog Springs')
 
 
@@ -86,10 +83,7 @@ def index():
 #################################################
 @app.route("/update")
 def update_data():
-    # Delete existing db table rows
-
-    # Insert refreshed data into db table rows
-
+    update_db(uri)
     return redirect(request.referrer, code=302)
 
 
