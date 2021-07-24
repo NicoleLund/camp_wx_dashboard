@@ -126,8 +126,45 @@ function line_chart(data) {
           pattern: 'independent',
           roworder: 'bottom to top'}
     };
-      
-    // Plot traces (probability and quantity of precipitation)
+
+    //Formatting
+
+    layout = go.Layout(
+        width = 800,
+        height = 500,
+        title = "ABC",
+        xaxis = dict(
+        nticks = 10,
+        title = "shared X axis showing DATE"
+        ),
+        yaxis1 = dict(
+        scaleanchor = "x",
+        title = "Windspeed (mph)"
+        ),
+        yaxis2 = dict(
+        scaleanchor = "x",
+        title = "Windgust (mph)"
+        ),
+        yaxis3 = dict(
+        scaleanchor = "x",
+        title = "Temperature (F)"
+        ),
+        yaxis4 = dict(
+        scaleanchor = "x",
+        title = "Probability of Rain"
+        ),
+        yaxis5 = dict(
+        scaleanchor = "x",
+        title = "Predicted Rainfall Amount (ml)"
+        ),
+        showlegend= True
+    )
+
+    fig = go.Figure(data=data, layout=layout)
+    plotly.offline.plot(fig, filename=str(DateDebut) +" a "+ str(DateFin) + ".csv", auto_open=True)
+    fig = plotly.tools.make_subplots(rows=5, cols=1)
+
+    // Plot traces 
     Plotly.newPlot('line_chart', data_traces, layout);
 
 }
