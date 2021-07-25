@@ -47,4 +47,4 @@ Build a dashboard for a Tucson AZ camping club that gathers the National Weather
     * Single item slick carousel of Campground image and google map location (<a href="https://kenwheeler.github.io/slick/" target="_blank">https://kenwheeler.github.io/slick/</a>)
     
 ### Sample Layout
-![sample](b_sample_layout/sample_layout_dashboard.png)
+![sample](b_html_layout_dev/sample_layout_dashboard.png)
