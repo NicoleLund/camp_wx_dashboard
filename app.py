@@ -117,24 +117,39 @@ def show_spencer_canyon():
 @app.route("/api/box_plot.json")
 def box_plot_json():
 
-    temp_data = {}
+    box_plot_data = {}
 
     # Bog Springs Temperature Forecast
     results = db.session.query(cg_bog_spring.forecasted_temperature_degF).all()
     data = [datum[0] for datum in results]
-    temp_data["bog_springs_temp"] = data
+    box_plot_data["bog_springs_temp"] = data
 
     # Rose Canyon Temperature Forecast
     results = db.session.query(cg_rose_canyon.forecasted_temperature_degF).all()
     data = [datum[0] for datum in results]
-    temp_data["rose_canyon_temp"] = data
+    box_plot_data["rose_canyon_temp"] = data
 
     # Spencer Canyon Temperature Forecast
     results = db.session.query(cg_spencer_canyon.forecasted_temperature_degF).all()
     data = [datum[0] for datum in results]
-    temp_data["spencer_canyon_temp"] = data
+    box_plot_data["spencer_canyon_temp"] = data
 
-    return jsonify([temp_data])
+    # Bog Springs Precipitation Forecast
+    results = db.session.query(cg_bog_spring.forecasted_quantityOfPrecipitation_mm).all()
+    data = [datum[0] for datum in results]
+    box_plot_data["bog_springs_precip"] = data
+
+    # Rose Canyon Precipitation Forecast
+    results = db.session.query(cg_rose_canyon.forecasted_quantityOfPrecipitation_mm).all()
+    data = [datum[0] for datum in results]
+    box_plot_data["rose_canyon_precip"] = data
+
+    # Spencer Canyon Precipitation Forecast
+    results = db.session.query(cg_spencer_canyon.forecasted_quantityOfPrecipitation_mm).all()
+    data = [datum[0] for datum in results]
+    box_plot_data["spencer_canyon_precip"] = data
+
+    return jsonify([box_plot_data])
 
 
 #################################################
