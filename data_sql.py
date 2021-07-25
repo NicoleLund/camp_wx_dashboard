@@ -132,7 +132,7 @@ def update_db(uri):
     temp_df['date_time_temp'] = temp_df['date_temp'] + ' ' + temp_df['time_temp']
 
     # Convert the above to date time format so it can be recognized by the PostgresSQL and js
-    temp_df['date_time_temp'] = pd.to_datetime(temp_df['date_time_temp'])
+    # temp_df['date_time_temp'] = pd.to_datetime(temp_df['date_time_temp'])
 
     # Pull all the data for today + 3 days
     time_delta_temp = datetime.datetime.strptime(temp_df['date_temp'][0],"%Y-%m-%d") + timedelta(days = 4)
@@ -164,7 +164,7 @@ def update_db(uri):
     windSpeed_df['date_time_ws'] = windSpeed_df['date_ws'] + ' ' + windSpeed_df['time_ws']
 
     # Convert the above to date time format so it can be recognized by the PostgresSQL and js
-    windSpeed_df['date_time_ws'] = pd.to_datetime(windSpeed_df['date_time_ws'])
+    # windSpeed_df['date_time_ws'] = pd.to_datetime(windSpeed_df['date_time_ws'])
 
     # Pull all the data for today + 3 days
     time_delta_ws = datetime.datetime.strptime(windSpeed_df['date_ws'][0],"%Y-%m-%d") + timedelta(days = 4)
@@ -196,7 +196,7 @@ def update_db(uri):
     wind_gust_df['date_time_wg'] = wind_gust_df['date_wg'] + ' ' + wind_gust_df['time_wg']
 
     # Convert the above to date time format so it can be recognized by the PostgresSQL and js
-    wind_gust_df['date_time_wg'] = pd.to_datetime(wind_gust_df['date_time_wg'])
+    # wind_gust_df['date_time_wg'] = pd.to_datetime(wind_gust_df['date_time_wg'])
     wind_gust_df
 
     # Pull all the data for today + 3 days
@@ -224,7 +224,7 @@ def update_db(uri):
     prob_precip_df['date_time_pp'] = prob_precip_df['date_pp'] + ' ' + prob_precip_df['time_pp']
 
     # Convert the above to date time format so it can be recognized by the PostgresSQL and js
-    prob_precip_df['date_time_pp'] = pd.to_datetime(prob_precip_df['date_time_pp'])
+    # prob_precip_df['date_time_pp'] = pd.to_datetime(prob_precip_df['date_time_pp'])
     prob_precip_df
 
     # Pull all the data for today + 3 days
@@ -252,7 +252,7 @@ def update_db(uri):
     qty_precip_df['date_time_qp'] = qty_precip_df['date_qp'] + ' ' + qty_precip_df['time_qp']
 
     # Convert the above to date time format so it can be recognized by the PostgresSQL and js
-    qty_precip_df['date_time_qp'] = pd.to_datetime(qty_precip_df['date_time_qp'])
+    # qty_precip_df['date_time_qp'] = pd.to_datetime(qty_precip_df['date_time_qp'])
     qty_precip_df
 
     # Pull all the data for today + 3 days
@@ -361,7 +361,7 @@ def update_db(uri):
     temp_rc_df['date_time_temp_rc'] = temp_rc_df['date_temp_rc'] + ' ' + temp_rc_df['time_temp_rc']
 
     # Convert the above to date time format so it can be recognized by the PostgresSQL and js
-    temp_rc_df['date_time_temp_rc'] = pd.to_datetime(temp_rc_df['date_time_temp_rc'])
+    # temp_rc_df['date_time_temp_rc'] = pd.to_datetime(temp_rc_df['date_time_temp_rc'])
 
     # Pull all the data for today + 3 days
     time_delta_temp_rc = datetime.datetime.strptime(temp_rc_df['date_temp_rc'][0],"%Y-%m-%d") + timedelta(days = 4)
@@ -393,7 +393,7 @@ def update_db(uri):
     windSpeed_rc_df['date_time_ws_rc'] = windSpeed_rc_df['date_ws_rc'] + ' ' + windSpeed_rc_df['time_ws_rc']
 
     # Convert the above to date time format so it can be recognized by the PostgresSQL and js
-    windSpeed_rc_df['date_time_ws_rc'] = pd.to_datetime(windSpeed_rc_df['date_time_ws_rc'])
+    # windSpeed_rc_df['date_time_ws_rc'] = pd.to_datetime(windSpeed_rc_df['date_time_ws_rc'])
 
     # Pull all the data for today + 3 days
     time_delta_ws = datetime.datetime.strptime(windSpeed_rc_df['date_ws_rc'][0],"%Y-%m-%d") + timedelta(days = 4)
@@ -425,7 +425,7 @@ def update_db(uri):
     wind_gust_rc_df['date_time_wg_rc'] = wind_gust_rc_df['date_wg_rc'] + ' ' + wind_gust_rc_df['time_wg_rc']
 
     # Convert the above to date time format so it can be recognized by the PostgresSQL and js
-    wind_gust_rc_df['date_time_wg_rc'] = pd.to_datetime(wind_gust_rc_df['date_time_wg_rc'])
+    # wind_gust_rc_df['date_time_wg_rc'] = pd.to_datetime(wind_gust_rc_df['date_time_wg_rc'])
     wind_gust_rc_df
 
     # Pull all the data for today + 3 days
@@ -454,7 +454,7 @@ def update_db(uri):
     prob_precip_rc_df['date_time_pp_rc'] = prob_precip_rc_df['date_pp_rc'] + ' ' + prob_precip_rc_df['time_pp_rc']
 
     # Convert the above to date time format so it can be recognized by the PostgresSQL and js
-    prob_precip_rc_df['date_time_pp_rc'] = pd.to_datetime(prob_precip_rc_df['date_time_pp_rc'])
+    # prob_precip_rc_df['date_time_pp_rc'] = pd.to_datetime(prob_precip_rc_df['date_time_pp_rc'])
     prob_precip_rc_df
 
     # Pull all the data for today + 3 days
@@ -483,7 +483,7 @@ def update_db(uri):
     qty_precip_rc_df['date_time_qp_rc'] = qty_precip_rc_df['date_qp_rc'] + ' ' + qty_precip_rc_df['time_qp_rc']
 
     # Convert the above to date time format so it can be recognized by the PostgresSQL and js
-    qty_precip_rc_df['date_time_qp_rc'] = pd.to_datetime(qty_precip_rc_df['date_time_qp_rc'])
+    # qty_precip_rc_df['date_time_qp_rc'] = pd.to_datetime(qty_precip_rc_df['date_time_qp_rc'])
     qty_precip_rc_df
 
     # Pull all the data for today + 3 days
@@ -593,7 +593,7 @@ def update_db(uri):
     temp_sc_df['date_time_temp_sc'] = temp_sc_df['date_temp_sc'] + ' ' + temp_sc_df['time_temp_sc']
 
     # Convert the above to date time format so it can be recognized by the PostgresSQL and js
-    temp_sc_df['date_time_temp_sc'] = pd.to_datetime(temp_sc_df['date_time_temp_sc'])
+    # temp_sc_df['date_time_temp_sc'] = pd.to_datetime(temp_sc_df['date_time_temp_sc'])
 
     # Pull all the data for today + 3 days
     time_delta_temp_sc = datetime.datetime.strptime(temp_sc_df['date_temp_sc'][0],"%Y-%m-%d") + timedelta(days = 4)
@@ -625,7 +625,7 @@ def update_db(uri):
     windSpeed_sc_df['date_time_ws_sc'] = windSpeed_sc_df['date_ws_sc'] + ' ' + windSpeed_sc_df['time_ws_sc']
 
     # Convert the above to date time format so it can be recognized by the PostgresSQL and js
-    windSpeed_sc_df['date_time_ws_sc'] = pd.to_datetime(windSpeed_sc_df['date_time_ws_sc'])
+    # windSpeed_sc_df['date_time_ws_sc'] = pd.to_datetime(windSpeed_sc_df['date_time_ws_sc'])
 
     # Pull all the data for today + 3 days
     time_delta_ws = datetime.datetime.strptime(windSpeed_sc_df['date_ws_sc'][0],"%Y-%m-%d") + timedelta(days = 4)
@@ -657,7 +657,7 @@ def update_db(uri):
     wind_gust_sc_df['date_time_wg_sc'] = wind_gust_sc_df['date_wg_sc'] + ' ' + wind_gust_sc_df['time_wg_sc']
 
     # Convert the above to date time format so it can be recognized by the PostgresSQL and js
-    wind_gust_sc_df['date_time_wg_sc'] = pd.to_datetime(wind_gust_sc_df['date_time_wg_sc'])
+    # wind_gust_sc_df['date_time_wg_sc'] = pd.to_datetime(wind_gust_sc_df['date_time_wg_sc'])
     wind_gust_sc_df
 
     # Pull all the data for today + 3 days
@@ -685,7 +685,7 @@ def update_db(uri):
     prob_precip_sc_df['date_time_pp_sc'] = prob_precip_sc_df['date_pp_sc'] + ' ' + prob_precip_sc_df['time_pp_sc']
 
     # Convert the above to date time format so it can be recognized by the PostgresSQL and js
-    prob_precip_sc_df['date_time_pp_sc'] = pd.to_datetime(prob_precip_sc_df['date_time_pp_sc'])
+    # prob_precip_sc_df['date_time_pp_sc'] = pd.to_datetime(prob_precip_sc_df['date_time_pp_sc'])
     prob_precip_sc_df
 
     # Pull all the data for today + 3 days
@@ -713,7 +713,7 @@ def update_db(uri):
     qty_precip_sc_df['date_time_qp_sc'] = qty_precip_sc_df['date_qp_sc'] + ' ' + qty_precip_sc_df['time_qp_sc']
 
     # Convert the above to date time format so it can be recognized by the PostgresSQL and js
-    qty_precip_sc_df['date_time_qp_sc'] = pd.to_datetime(qty_precip_sc_df['date_time_qp_sc'])
+    # qty_precip_sc_df['date_time_qp_sc'] = pd.to_datetime(qty_precip_sc_df['date_time_qp_sc'])
     qty_precip_sc_df
 
     # Pull all the data for today + 3 days
