@@ -72,62 +72,307 @@ function line_chart(data) {
     var quantityPrecipitation = data[1].forecasted_quantityOfPrecipitation_mm
     var quantityPrecipitation_times = data[1].forecastTime_quantityOfPrecipitation
 
-    var trace1 = {
+    // var parseTime = d3.timeParse("%m-%d %I%p")
+    // Windspeed Section
+    var windspeed_trace = {
         x: windSpeed_times,
         y: windSpeed,
-        // xaxis: '%d %B (%a)<br>%Y',
+        name: "Wind Speed (mph)",
         mode: 'lines+markers',
         type: 'scatter'
     };
+console.log(windSpeed_times)
+
+    var windspeed_layout = {
+        title: "Wind Speed",
+        xaxis: {
+            // title: 'Date/Time',
+            visible: true,
+            showticklabels: true
+        },
+        yaxis: {
+            title: 'Wind Speed (mph)',
+            visible: true,
+            showticklabels: true
+        }
+    };
+
+    Plotly.newPlot('windspeed_chart', [windspeed_trace], windspeed_layout);
+
+// Temperature Section
+var temp_trace = {
+    x: temp_times,
+    y: temps,
+    name: "Temperature (F)",
+    mode: 'lines+markers',
+    type: 'scatter'
+};
+
+var temp_layout = {
+    title: "Temperature",
+    xaxis: {
+        // title: 'Date/Time',
+        visible: true,
+        showticklabels: true
+    },
+    yaxis: {
+        title: 'Temperature (F)',
+        visible: true,
+        showticklabels: true
+    }
+};
+
+Plotly.newPlot('temp_chart', [temp_trace], temp_layout);
+
+// Precipitation Probability Section
+var precipitation_trace = {
+    x: precipitation_times,
+    y: precipitation,
+    name: "Rainfall (%)",
+    mode: 'lines+markers',
+    type: 'scatter'
+};
+
+var precipitation_layout = {
+    title: "Probability of Rain",
+    xaxis: {
+        // title: 'Date/Time',
+        visible: true,
+        showticklabels: true
+    },
+    yaxis: {
+        title: 'Rainfall (%)',
+        visible: true,
+        showticklabels: true
+    }
+};
+
+Plotly.newPlot("precip_probability_chart", [precipitation_trace], precipitation_layout);
+
+// Precipitation Quantity Section
+var quantityPrecipitation_trace = {
+    x: quantityPrecipitation_times,
+    y: quantityPrecipitation,
+    name: "Rainfall (in)",
+    mode: 'lines+markers',
+    type: 'scatter'
+};
+
+var quantityPrecipitation_layout = {
+    title: "Amount of Rainfall",
+    xaxis: {
+        // title: 'Date/Time',
+        visible: true,
+        showticklabels: true
+    },
+    yaxis: {
+        title: 'Rainfall (in)',
+        visible: true,
+        showticklabels: true
+    }
+};
+
+Plotly.newPlot("precip_quantity_chart", [quantityPrecipitation_trace], quantityPrecipitation_layout);
+
+// Plotly.newPlot'windSpeed_chart','temp_summary');
+
+
+    // // Precipitation Probaility Section
+    // var precip_prob_trace = {
+    //     x: precipitation_times,
+    //     y: precipitation,
+    //     name: "Probability of Rain (%)",
+    //     mode: 'lines+markers',
+    //     type: 'scatter'
+    // };
+
+    // var precip_prob_layout = {
+    //     xaxis: {
+    //         title: 'x-label',
+    //         visible: true,
+    //         showticklabels: true
+    //     },
+    //     yaxis: {
+    //         title: 'y-label',
+    //         visible: true,
+    //         showticklabels: true
+    //     }
+    // }
+
+    // Plotly.newPlot('precip_probability_chart', precip_prob_trace, precip_prob_layout);
+
+
+
+
       
     var trace2 = {
         x: windGust_times,
         y: windGust,
+        name: "Windgust (mph)",
         xaxis: 'x2',
         yaxis: 'y2',
         mode: 'lines+markers',
-        type: 'scatter'
+        type: 'scatter',
+        scene: "scene2"
     };
       
     var trace3 = {
         x: temp_times,
         y: temps,
+        name: "Temperature (F)",
         xaxis: 'x3',
         yaxis: 'y3',
         mode: 'lines+markers',
-        type: 'scatter'
+        type: 'scatter',
+        scene: "scene3"
     };
 
     var trace4 = {
         x: precipitation_times,
         y: precipitation,
+        name: "Probability of Rain (%)",
         xaxis: 'x4',
         yaxis: 'y4',
         mode: 'lines+markers',
-        type: 'scatter'
+        type: 'scatter',
+        scene: "scene4"
     };
       
     var trace5 = {
         x: quantityPrecipitation_times,
         y: quantityPrecipitation,
+        name: "Predicted Rainfall Amount (mm)",
         xaxis: 'x5',
         yaxis: 'y5',
         mode: 'lines+markers',
-        type: 'scatter'
+        type: 'scatter',
+        scene: "scene5"
         
     };
-      
-    var data_traces = [trace1, trace2,trace3,trace4,trace5];
-      
-    var layout = {
-        grid: {
-          rows: 5,
-          columns: 1,
-          pattern: 'independent',
-          roworder: 'bottom to top'}
-    };
-      
-    // Plot traces (probability and quantity of precipitation)
-    Plotly.newPlot('line_chart', data_traces, layout);
 
-}
+    //Formatting
+       
+    // var data_traces = [trace1, trace2,trace3,trace4,trace5];
+    
+
+    // var layout = {
+    //     grid: {
+    //       rows: 5,
+    //       columns: 1,
+    //       pattern: 'independent',
+    //       roworder: 'bottom to top'},
+    //     title: "ABC",
+    //     scene1: {
+    //         domain: {
+    //             x: [0.0, 1.0],
+    //             y: [0.8,1.0]
+    //         },
+    //         xaxis: {
+    //             title: 'x-label',
+    //             visible: true,
+    //             showticklabels: false
+    //         },
+    //         yaxis: {
+    //             title: 'y-label',
+    //             visible: true,
+    //             showticklabels: true
+    //         }
+    //     },
+    //     scene2: {
+    //         domain: {
+    //             x: [0.0, 1.0],
+    //             y: [0.6,0.8]
+    //         },
+    //         xaxis: {
+    //             title: 'x-label',
+    //             visible: true,
+    //             showticklabels: false
+    //         },
+    //         yaxis: {
+    //             title: 'y-label',
+    //             visible: true,
+    //             showticklabels: true
+    //         }
+    //     },
+    //     scene3: {
+    //         domain: {
+    //             x: [0.0, 1.0],
+    //             y: [0.4,0.6]
+    //         },
+    //         xaxis: {
+    //             title: 'x-label',
+    //             visible: true,
+    //             showticklabels: false
+    //         },
+    //         yaxis: {
+    //             title: 'y-label',
+    //             visible: true,
+    //             showticklabels: true
+    //         }
+    //     },
+    //     scene4: {
+    //         domain: {
+    //             x: [0.0, 1.0],
+    //             y: [0.2,0.4]
+    //         },
+    //         xaxis: {
+    //             title: 'x-label',
+    //             visible: true,
+    //             showticklabels: false
+    //         },
+    //         yaxis: {
+    //             title: 'y-label',
+    //             visible: true,
+    //             showticklabels: true
+    //         }
+    //     },
+    //     scene5: {
+    //         domain: {
+    //             x: [0.0, 1.0],
+    //             y: [0.0,0.2]
+    //         },
+    //         xaxis: {
+    //             title: 'x-label',
+    //             visible: true,
+    //             showticklabels: false
+    //         },
+    //         yaxis: {
+    //             title: 'y-label',
+    //             visible: true,
+    //             showticklabels: true
+    //         }
+    //     }
+    //     // xaxis: {
+    //     //     nticks: 20,
+    //     //     title: "Shared Date"
+    //     // },
+    //     // yaxis1: {
+    //     //     // scaleanchor: "x",
+    //     //     legendtitle: "Windspeed (mph)"
+    //     // },
+    //     // yaxis2: {
+    //     //     // scaleanchor: "x",
+    //     //     legendtitle: "Windgust (mph)"
+    //     // },
+    //     // yaxis3: {
+    //     //     // scaleanchor: "x",
+    //     //     legendtitle: "Temperature (F)"
+    //     // },
+    //     // yaxis4:{
+    //     //     // scaleanchor: "x",
+    //     //     legendtitle: "Probability of Rain (%)"
+    //     // },
+    //     // yaxis5:{
+    //     //     // scaleanchor: "x",
+    //     //     legendtitle: "Predicted Rainfall Amount (mm)"
+    //     // }
+    //     // showlegend: true
+    // }
+    // fig = go.Figure(data=data, layout=layout)
+    // // plotly.offline.plot(fig, filename=str(DateDebut) +" a "+ str(DateFin) + ".csv", auto_open=true)
+    // fig = plotly.tools.make_subplots(rows=5, cols=1, shared_xaxes=true)
+
+    // Plot traces 
+};
+
+
