@@ -1,8 +1,8 @@
 // ####################################################
 // box_plot.js
 // ----
-// Anne Niemiec authored the chart definitions.
-// Nicole Lund authored the json retrieval and text updates.
+// Anne Niemiec authored the temperature chart.
+// Nicole Lund authored the precip chart.
 // ####################################################
 
 d3.json("api/box_plot.json").then((temp_data) => {
@@ -37,9 +37,6 @@ d3.json("api/box_plot.json").then((temp_data) => {
     var layout = {
       title: '3-Day Forecasted Temperature Range',
       showlegend: false,
-      xaxis: {
-        title: 'Campground'
-      },
       yaxis: {
         title: 'Temperature (F)',
         range: [30,100]
