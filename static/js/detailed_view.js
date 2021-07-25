@@ -1,3 +1,10 @@
+// ####################################################
+// detailed_view.js
+// ----
+// Anne Niemiec authored the chart definitions.
+// Nicole Lund authored the json retrieval and text updates.
+// ####################################################
+
 var location_display = d3.select("#selected_campground").text();
 
 switch(location_display) {
@@ -52,7 +59,7 @@ function build_page(data) {
         .html(data[0].campground + ' Forest Service Webpage');
         
     // Add charts to carousel
-    line_chart(data);
+    add_charts(data);
 
     // Add google map to carousel
     d3.select("#google_map")
@@ -65,7 +72,7 @@ function build_page(data) {
         .html("<img src='" + data[0].campsite_url +"'>");
 };
 
-function line_chart(data) {
+function add_charts(data) {
     var temps = data[1].forecasted_temperature_degF;
     var temp_times = data[1].forecastTime_temperature;
     var windGust = data[1].forecasted_windGust_miles_per_h;
@@ -106,6 +113,37 @@ function line_chart(data) {
     Plotly.newPlot('temp_chart', [temp_trace], temp_layout);
 
 
+    // Precipitation Section
+    var precip_quantity_trace = {
+        x: quantityPrecipitation_times,
+        y: quantityPrecipitation,
+        name: "Rainfall Quantity (mm)",
+        mode: 'lines+markers',
+        type: 'scatter'
+    };
+    var precip_prob_trace = {
+        x: precipitation_times,
+        y: precip_probability,
+        name: "Probability of Rainfall",
+        mode: 'lines+markers',
+        type: 'scatter'
+    };
+    var precip_layout = {
+        title: "Forecasted Rainfall",
+        xaxis: {
+            title: 'Date/Time',
+            visible: true,
+            showticklabels: true
+        },
+        yaxis: {
+            title: 'Rainfall',
+            visible: true,
+            showticklabels: true
+        }
+    };
+    Plotly.newPlot("precip_chart", [precip_quantity_trace, precip_prob_trace], precip_layout);
+    
+    
     // Windspeed Section
     var windspeed_trace = {
         x: windSpeed_times,
@@ -135,45 +173,6 @@ function line_chart(data) {
         }
     };
     Plotly.newPlot('wind_chart', [windspeed_trace, windgust_trace], windspeed_layout);
-
-
-    // Precipitation Probability Section
-    var precip_quantity_trace = {
-        x: quantityPrecipitation_times,
-        y: quantityPrecipitation,
-        name: "Rainfall Quantity (mm)",
-        mode: 'lines+markers',
-        type: 'scatter'
-    };
-    var precip_prob_trace = {
-        x: precipitation_times,
-        y: precip_probability,
-        name: "Probability of Rainfall",
-        mode: 'lines+markers',
-        type: 'scatter'
-    };
-    
-    var precip_layout = {
-        title: "Forecasted Rainfall",
-        xaxis: {
-            title: 'Date/Time',
-            visible: true,
-            showticklabels: true
-        },
-        yaxis: {
-            title: 'Rainfall',
-            visible: true,
-            showticklabels: true
-        },
-        // yaxis3: {
-        //     title: 'Rainfall Probability (%)',
-        //     visible: true,
-        //     showticklabels: true,
-        //     side: 'right'
-        // }
-    };
-
-    Plotly.newPlot("precip_chart", [precip_quantity_trace, precip_prob_trace], precip_layout);
 
 };
 
