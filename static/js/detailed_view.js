@@ -81,8 +81,6 @@ function line_chart(data) {
     var quantityPrecipitation = data[1].forecasted_quantityOfPrecipitation_mm;
     var quantityPrecipitation_times = data[1].forecastTime_quantityOfPrecipitation;
 
-    // var parseTime = d3.timeParse("%m-%d %I%p")
-
 
     // Temperature Section
     var temp_trace = {
