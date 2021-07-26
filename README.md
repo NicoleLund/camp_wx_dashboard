@@ -14,7 +14,7 @@ Build a dashboard for a Tucson AZ camping club that gathers the National Weather
 
 ### Tools Utilized
 | Webpage | Extract, Transform, Load (ETL) | Visualize |
-|----------|----------|----------|----------|
+|----------|----------|----------|
 | Flask | Python | Javascript | 
 | HTML | Pandas | D3.js |
 | CSS | SQLAlchemy | Plotly.js |
