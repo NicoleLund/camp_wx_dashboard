@@ -13,7 +13,7 @@ Build a dashboard for a Tucson AZ camping club that gathers the National Weather
 <a href="https://campground-wx.herokuapp.com/" target="_blank">https://campground-wx.herokuapp.com/</a>
 
 ### Tools Utilized
-| Webpage | Extract, Transform, Load (ETL) | Visualize |
+| Webpage | Extract, Transform, Load (ETL) | Visualization |
 |----------|----------|----------|
 | Flask | Python | Javascript | 
 | HTML | Pandas | D3.js |
