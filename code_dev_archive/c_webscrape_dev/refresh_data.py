@@ -8,6 +8,10 @@
 # 
 # This Python script scrapes useful camping information from various 
 # locations for storage in a postgreSQL DB and display on a webpage.
+#
+# Note, that webscraping in this manner does not work with Heroku
+# because there it is not compatible with ChromeDriverManager.
+# This functionality was tabled for the moment.
 ####################################################
 
 # Import Dependencies

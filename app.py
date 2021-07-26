@@ -26,7 +26,7 @@ import psycopg2
 
 # Import local file dependencies
 from models import create_classes
-import refresh_data
+# import refresh_data
 from data_sql import update_db
 
 #################################################
